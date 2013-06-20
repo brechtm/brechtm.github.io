@@ -1,0 +1,4 @@
+[submodule "output"]
+	path = output
+	url = git@github.com:brechtm/brechtm.github.io.git
+	branch = master
