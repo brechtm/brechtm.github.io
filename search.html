@@ -6,12 +6,16 @@
         <meta name="author" content="Brecht Machiels" />
         <meta name="copyright" content="Brecht Machiels" />
 
-        <title><span style='color:black;'>mos</span><span style='color:#AA1032;'>6581</span> - Authors</title>
+        <title>Search · mos6581
+</title>
         <link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="http://www.mos6581.org/theme/css/style.css" media="screen">
         <link rel="stylesheet" type="text/css" href="http://www.mos6581.org/theme/css/solarizedlight.css" media="screen">
         <link rel="stylesheet" type="text/css" href="http://www.mos6581.org/theme/css/customization.css" media="screen">
+
+<link href="http://fonts.googleapis.com/css?family=Lato:300,400|Open+Sans:300,400" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="http://www.mos6581.org/theme/tipuesearch/tipuesearch.css">
         <link rel="shortcut icon" href="http://www.mos6581.org/theme/images/favicon.ico" type="image/x-icon" />
         <link rel="apple-touch-icon" href="http://www.mos6581.org/theme/images/apple-touch-icon.png" />
         <link rel="apple-touch-icon" sizes="57x57" href="http://www.mos6581.org/theme/images/apple-touch-icon-57x57.png" />
@@ -49,7 +53,11 @@
             <div class="row-fluid">
                 <div class="span1"></div>
                 <div class="span10">
-    <h1>Authors on <span style='color:black;'>mos</span><span style='color:#AA1032;'>6581</span></h1>        <li><a href="http://www.mos6581.org/author/brecht-machiels.html">Brecht Machiels</a> (1)</li>
+<article>
+    <div class="span8 offset2">
+        <div id="tipue_search_content"><div id="tipue_search_loading"></div></div>
+    </div>
+</article>
                 </div>
                 <div class="span1"></div>
             </div>
@@ -61,13 +69,18 @@
         <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
     </ul>
 </div>
-</footer>        <script src="http://code.jquery.com/jquery.min.js"></script>
-        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-        <script>
-            function validateForm(query)
-            {
-                return (query.length > 0);
-            }
-        </script>
+</footer><script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="http://www.mos6581.org/theme/tipuesearch/tipuesearch_set.js"></script>
+<script type="text/javascript" src="http://www.mos6581.org/theme/tipuesearch/tipuesearch.min.js"></script>
+<script>
+$(document).ready(function() {
+     $('#tipue_search_input').tipuesearch({
+             'mode' : 'json',
+         'show': 10,
+         'newWindow': true,
+             'contentLocation': 'http://www.mos6581.org/tipuesearch_content.json'
+     });
+});
+</script>
     </body>
 </html>
