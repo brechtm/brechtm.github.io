@@ -2,3 +2,9 @@
 	path = output
 	url = git@github.com:brechtm/brechtm.github.io.git
 	branch = master
+[submodule "pelican-plugins"]
+	path = pelican-plugins
+	url = https://github.com/getpelican/pelican-plugins.git
+[submodule "pelican-elegant"]
+	path = pelican-elegant
+	url = git@github.com:brechtm/pelican-elegant.git
