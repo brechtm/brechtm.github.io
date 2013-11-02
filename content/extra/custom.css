@@ -27,3 +27,8 @@ h1, h2, h3 {
   vertical-align: middle;
 }
 
+/* Fix repeated title for the table of contents */
+div#contents p.topic-title.first {
+  display: none;
+}
+
