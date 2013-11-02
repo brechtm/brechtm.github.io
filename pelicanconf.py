@@ -37,6 +37,8 @@ AUTHOR_SAVE_AS = ''
 #MENUITEMS = (('About', 'http://about.me/brechtmachiels'),
 #)
 
+GOOGLE_ANALYTICS = ('mos6581.org', 'UA-45391629-1')
+
 LANDING_PAGE_ABOUT = {
     'title': 'Brecht Machiels <small>Tech Addict</small>',
     'details': """<p>I've always been intrigued by technology. My dad's <a href="http://en.wikipedia.org/wiki/Commodore_64" title="Wikipedia: Commodore 64">Commodore 64</a> grabbed my attention at an early age and computers and technology have never stopped fascinating me. I even went to the trouble of completing a <a href="/distributed-amplification-in-cmos" title="Distributed Amplification in CMOS">Ph.D. degree in micro-electronics</a>. Additionally, I am self-taught in computer programming, with over 10 years of hands-on experience. Over the years, I have developed a number of open-source applications. My most ambitious project so far, <a href="http://github.com/brechtm/rinohtype" title="RinohType">RinohType</a>, is a modern alternative to <a href="http://en.wikipedia.org/wiki/LaTeX" title="Wikipedia: LaTeX">LaTeX</a> written in <a href="http://www.python.org/" title="Python Programming Language - Official Website">Python</a>, my favorite programming language. Four years into its development, it is now quickly approaching a state where it offers most of the features you would expect from such an application.</p>
