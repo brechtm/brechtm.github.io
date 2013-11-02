@@ -7,9 +7,7 @@ Introducing RinohType
 
 .. contents::
 
-I originally planned to release RinohType into wild only after I had finished a full review, refactoring and documentation of the code. I also wanted to write some API documentation and a small tutorial, all in the spirit of making a good first impression. Turns out all this takes a huge amount of time! So I've decided to dump the code in its current state onto GitHub, write a blog article about it and await some valuable feedback while I resume my refactoring and documenting chore. If you decide to play around with the code, just bear in mind that this is just a preview release. Your experience might not be as smooth as I eventually planned it to be.
-
-This article turned out quite long, so if you are short on time you can read only the sections that sound interesting to you. The first section, Motivation, consists mainly of complaints about (La)TeX, so that can safely be skipped, for example.
+I originally planned to release RinohType into wild only after I had finished a full review, refactoring and documentation of the code. I also wanted to write some API documentation and a small tutorial, all in the spirit of making a good first impression. Turns out all this takes a huge amount of time! So I've decided to dump the code in its current state onto GitHub, write a blog article about it and await some valuable feedback while I resume my refactoring and documenting chore. If you decide to play around with the code, just bear in mind that this is just a preview release. Your experience might not be as smooth as it will be in the future.
 
 Motivation
 ==========
@@ -59,7 +57,7 @@ At the time of writing, RinohType implements:
 - Automatically generated table of contents.
 - Cross-references.
 - Footnotes.
-- With the help of `citeproc-py <https://pypi.python.org/pypi/citeproc-py/0.1.0>`_, support for citing references from a BibTeX database and generating a bibliography.
+- With the help of `citeproc-py`_, support for citing references from a BibTeX database and generating a bibliography.
 
 The one major omission from this list is formula rendering. I did try using the TeX formula renderer from matplotlib (the mathtext module) and `SVGMath <http://sourceforge.net/projects/svgmath/>`_, but with unsatisfactory results. I've decided to write math rendering from scratch once the core of RinohType (everything listed above) is working properly.
 
@@ -74,16 +72,12 @@ XML is unfortunately not the best format for hand-editing, however. One of the a
 `reStructuredText <http://docutils.sourceforge.net/rst.html>`_ is a great markup syntax that is easy to write and read. Additionally, it is extensible, which makes it pretty much the perfect input format for RinohType (I haven't thought about how to verify rST input yet, though). The `rST example <https://github.com/brechtm/rinohtype/tree/master/examples/restructuredtext>`_ attempts to typeset the `ReStructuredText Primer <http://docutils.sourceforge.net/docs/user/rst/quickstart.html>`_. The rST parser in the example will eventually be moved into the core of RinohType as a frontend.
 
 
-Introspection
-=============
+Evaluation
+==========
 
-Unsurprisingly, even after four years into its development, RinohType still does not provide an option for absolute figure placement, the missing LaTeX feature that originally set me off on this journey. Of course, a lot of other things needed to be put in place before this could be addressed. While I could implement this feature now, there are more pressing things to adress first.
+Unsurprisingly, even after four years into its development, RinohType still does not provide an option for absolute figure placement, the missing LaTeX feature that originally set me off on this journey. Of course, a lot of other things needed to be put in place before this could be addressed. While I could implement this feature at this moment, there are more pressing things to adress first.
 
-I'm pretty happy with the result so far and I'm especially proud of the simplicity and compactness of the code. The ``rinoh`` Python package counts less than 6500 lines of code (excluding comments and empty lines). This includes both the PDF backend (1700 lines) and the font parsers (1750 lines), so the core of RinohType is really only about 3000 lines code! I think this is in a large part made possible due to to the expressive power of Python. The fact that I did quite a lot of major refactorings must have also been an important factor though.
-
-.. note:: Looking at the examples, it should be easy to modify them to your taste completely. For changing the text styles, you need no Python experience. For changing a page style, you need maybe a little programming experience.
-
-.. note:: Not yet anything on how to use (examples are not so easy to interpret)
+I'm pretty happy with the result so far and I'm especially proud of the simplicity and compactness of the code. The ``rinoh`` Python package counts less than 6500 lines of code (excluding comments/docstrings and empty lines). This includes both the PDF backend (1700 lines) and the font parsers (1750 lines), so the core of RinohType comprises only about 3000 lines of code! I think this is in a large part made possible due to to the expressive power of Python. The fact that I was constantly refactoring must have also been an important factor though.
 
 One aspect that I'm not so enthousiastic about is RinohType's performance. On my modest `Celeron T3000 1.8 GHz <http://ark.intel.com/products/40738/Intel-Celeron-Processor-T3000-1M-Cache-1_80-GHz-800-MHz-FSB>`_ laptop, the average rendering time for a page in the RFIC example is a disappointing 0.8 seconds. For small documents, this is unlikely to be a problem, but for books it's problematic. RinohType should become *at least* a factor of ten faster. I've already introduced some optimizations such as memoizing return values and using generators instead of lists, but it is clearly not cutting it. Looking for an easy solution, I've done some quick tests with PyPy3k (rendering the RFIC example over and over), but these were rather disappointing; rendering time was about five times slower compared to CPython. With Cython, I'm not sure what part of the code to enhance with type declarations, as there is no obvious number crunching going on.
 
@@ -93,7 +87,7 @@ Planned Work
 
 I first want to finish refactoring and documenting the remaining parts of the code. When this is done, performance tweaking will probably very high on my to do list. Once the current functionality is more or less stable, I'd like to tackle maths typesetting. I'm secretly hoping Microsoft's mathematical OpenType layout extensions can help me get good results for at least a `small number of fonts <http://en.wikipedia.org/wiki/Category:Mathematical_OpenType_typefaces>`_ with minimal effort.
 
-Some features that I have been thinking of, in order of likeliness to actually make it into RinohType in the foreseeable future:
+Some other features that I have been thinking of, in order of likeliness to actually make it into RinohType in the foreseeable future:
 
 - Manual figure placement!
 - Provide a number of standard document/page/font styles
@@ -107,12 +101,19 @@ Some features that I have been thinking of, in order of likeliness to actually m
 - Non-rectangular paragraphs
 
 
+For the Brave
+=============
+
+For those who of you who are not afraid of some alpha-quality code, you can experiment with RinohType by cloning `the repository <https://github.com/brechtm/rinohtype>`_, adding the top-level directory to your ``PYTHON_PATH`` and running the examples.
+
+For the RFIC example, you need only `citeproc-py <https://pypi.python.org/pypi/citeproc-py>`_. If you want to validate the XML, you'll also need `lxml <http://lxml.de>`_ though. For the reStructuredText example, you need `docutils <https://pypi.python.org/pypi/docutils>`_.
+
+While it should be obvious how to adjust the paragraph/title/ styles of the examples, it might not be so easy to understand how page layout is defined (in the RFIC example, anyway). Even more so, an introduction on how the parsed input data (XML or rST) is processed might be useful if you want to define another XML input schema or extend the reStructuredText frontend. For this reason, I might follow up on this article with a short tutorial covering these topics before I start writing official documentation.
+
+
 The License
 ===========
 
 While this originally started out as just another one of my programming projects, I am will be investigating the possibility to sell licenses for commercial use and have therefor released RinohType under the Affero GPL. Commercial success would ensure that RinohType is 
 
-The Affero GPL ensures that it will still be be free to in open source projects. I am aware that the viral nature of the GPL makes it impossible for non-GPL projects to depend on RinohType. Unfortunately, it is this viral nature that makes it possible to sell commercial-use licenses. I do believe however, that this is a non-intended side-effect of the copyleft. Perhaps it is possible to employ a BSD-like license customized to prohibit commercial use? I have not yet found any examples of this.
-
-follow up with small tutorial 
-(follow up with architecture overview)
+The Affero GPL ensures that RinohType will still be be free to use in open source projects. I am aware that the viral nature of the GPL makes it impossible for non-GPL projects to depend on RinohType though. Unfortunately, it is this same viral nature that makes it possible to sell commercial-use licenses (a non-intentional side-effect of the copyleft?). Perhaps it is possible to employ a BSD-like license customized to prohibit commercial use? I have not yet found any examples of this.
