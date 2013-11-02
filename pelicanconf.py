@@ -97,11 +97,13 @@ STATIC_PATHS = [
     'files',
     'extra/CNAME',
     'extra/customization.css',
+    'extra/google9ddc49a50caff71e.html'
 ]
 
 EXTRA_PATH_METADATA = {
     os.path.join('extra', 'CNAME'): {'path': 'CNAME'},
     os.path.join('extra', 'customization.css'): {'path': 'theme/css/customization.css'},
+    os.path.join('extra', 'google9ddc49a50caff71e.html'): {'path': 'google9ddc49a50caff71e.html'},
 }
 
 FILENAME_METADATA = '(?P<date>\d{4}-\d{2}-\d{2})_(?P<slug>.*)'
