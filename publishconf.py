@@ -22,5 +22,5 @@ OUTPUT_RETENTION = ['.git', '.gitignore']
 # Following items are often useful when publishing
 
 DISQUS_SITENAME = "mos6581"
-#GOOGLE_ANALYTICS = ""
+GOOGLE_ANALYTICS = ('mos6581.org', 'UA-45391629-1')
 
