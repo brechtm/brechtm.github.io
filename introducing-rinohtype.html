@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Brecht Machiels" />
+        <meta name="copyright" content="Brecht Machiels" />
+
+<meta name="keywords" content="python, RinohType, " />
+        <title>Introducing&nbsp;RinohType  - the Python document processor  · mos6581
+</title>
+        <link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://www.mos6581.org/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://www.mos6581.org/theme/css/solarizedlight.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://www.mos6581.org/theme/css/custom.css" media="screen">
+        <link rel="shortcut icon" href="http://www.mos6581.org/theme/images/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="http://www.mos6581.org/theme/images/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="http://www.mos6581.org/theme/images/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="http://www.mos6581.org/theme/images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="http://www.mos6581.org/theme/images/apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="http://www.mos6581.org/theme/images/apple-touch-icon-144x144.png" />
+        <link rel="icon" href="http://www.mos6581.org/theme/images/apple-touch-icon-144x144.png" />
+        <link href="http://www.mos6581.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="mos6581 - Full Atom Feed" />
+        <link href="http://www.mos6581.org/feeds/RinohType.atom.xml" type="application/atom+xml" rel="alternate" title="mos6581 - RinohType Category Atom Feed" />
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-45391629-1', 'mos6581.org');
+    ga('send', 'pageview');
+  </script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://www.mos6581.org/"><span class=site-name><span style='color:black;'>mos</span><span style='color:#AA1032;'>6581</span></span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://www.mos6581.org">Home</a></li>
+                            <li ><a href="http://www.mos6581.org/categories.html">Categories</a></li>
+                            <li ><a href="http://www.mos6581.org/tags.html">Tags</a></li>
+                            <li ><a href="http://www.mos6581.org/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://www.mos6581.org/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page_header span10 offset2">
+    <h1><a href="http://www.mos6581.org/introducing-rinohtype"> Introducing&nbsp;RinohType  <small> the Python document processor </small>  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#motivation" id="id1">Motivation</a></li>
+<li><a class="reference internal" href="#current-status" id="id2">Current Status</a></li>
+<li><a class="reference internal" href="#example-documents-and-input-formats" id="id3">Example Documents and Input Formats</a></li>
+<li><a class="reference internal" href="#evaluation" id="id4">Evaluation</a></li>
+<li><a class="reference internal" href="#planned-work" id="id5">Planned Work</a></li>
+<li><a class="reference internal" href="#for-the-brave-dependencies" id="id6">For the Brave / Dependencies</a></li>
+<li><a class="reference internal" href="#the-license" id="id7">The License</a></li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+<p>I originally planned to release RinohType into wild only after I had finished a full review, refactoring and documenting of the code. I also wanted to write some <span class="caps">API</span> documentation and a small tutorial, all in the spirit of making a good first impression. Turns out all this takes a huge amount of time! So I’ve decided to dump the code in its current state onto GitHub, write a blog article about it and await some valuable feedback while I resume my refactoring and documenting chore.</p>
+<p>If you decide to play around with the code, please bear in mind that this is just a preview; your experience might not be as smooth as I intend it to be eventually.</p>
+<div class="section" id="motivation">
+<h2><a class="toc-backref" href="#id1">Motivation</a></h2>
+<p>Somewhere back in 2009, I was using <a class="reference external" href="http://en.wikipedia.org/wiki/LaTeX">LaTeX</a> to write a paper on some of my <a class="reference external" href="http://www.mos6581.org/distributed-amplification-in-cmos">PhD research</a>. I had used LaTeX before for a number of lab reports and two master’s theses, so I was already experienced with it. While I find working with LaTeX is generally a smooth experience, I did encounter some annoyances over the years. The particular annoyance of the day was figure placement. Where LaTeX’s automatic figure placement is pretty good in longer texts, I find it extremely frustrating when writing a short paper. For these papers, I basically want to place my figures manually, exactly where I want them (figure 2 goes in the top of the left column on page 2, for example). However, this doesn’t seem to be an option with LaTeX, so I ended up moving my <tt class="docutils literal">\includegraphics</tt> directive around in the LaTeX source document in a trial-and-error fashion to have the figure eventually appear where I wanted it to be. Basically, this meant moving all my <tt class="docutils literal">\includegraphics</tt> directives to a location far from near the text where it would end up in the rendered document. After a good hour of messing around with this and <a class="reference external" href="http://www.ntg.nl/pipermail/ntg-context/2008/037150.html">exploring</a>  two alternatives to LaTeX (<a class="reference external" href="http://en.wikipedia.org/wiki/Lout_(software)">Lout</a> and <a class="reference external" href="http://en.wikipedia.org/wiki/ConTeXt">ConTeXt</a>), I said to myself, <em>Enough! I’m writing my own document processor!</em> And so I set out to build the definitive replacement for LaTeX.</p>
+<p>It is worth pointing out the other gripes I have with (La)TeX at this point. I will probably regret this later (I have the impression TeXies can be quite fanatical), but here we go:</p>
+<ul class="simple">
+<li>TeX is not transparent. It is a huge, complex system. To make things worse, there are a number of different TeX distributions, each organizing things in a slightly different way. With hundreds of megabytes and seemingly millions of files for a typical TeX installation, I have no idea what is going on when TeX processes a document. <a class="reference external" href="http://www.ctan.org/pkg/kpathsea">kpathsea</a> is a testament to a part of this complexity.</li>
+<li>The arcane TeX macro language is not accessible to a broad audience. I believe this is why most LaTeX-generated documents you come across have exactly the same (retro) look; very few people are capable of creating new document styles.</li>
+<li>TeX is not very modern. Yes, even today it still is a very impressive piece of software. However, next to being built upon some weird macro language of old, it predates a lot of modern technologies (Unicode, standard font file formats, Postscript and <span class="caps">PDF</span>), so these things had to be hacked into it. While I understand you generally shouldn’t rewrite software from scratch, maybe TeX should be one of the few exceptions to this rule?</li>
+<li>TeX’s warnings/errors are often very cryptic. It can sometimes take a long time to figure out what’s wrong.</li>
+<li>(La)TeX has an incredible amount of extension packages available. There’s probably a package for pretty much <a class="reference external" href="http://tex.stackexchange.com/questions/67656/are-there-other-fun-packages-like-the-coffee-stains-package">anything you might ever need</a>. But why do I even need to mess around with all these extension packages when all I’m doing is writing a simple article? Doesn’t this mean that LaTeX should include at least some of the most commonly used packages by default?</li>
+<li>This might largely be a solved problem by now, but I remember often running into input and font encoding issues with LaTeX in the past.</li>
+<li>There is no strict separation of content and style. This is mostly an issue for publishers that want to ensure a consistent style across articles in a journal. With LaTeX, academic authors can always reduce the margins or change the interline spacing to be able to squeeze in more half-truths.</li>
+</ul>
+<p>Wow, this all sounds very negative. I should mention that RinohType was in a large part also inspired by (La)TeX in a positive way; the latter gets a lot of things right indeed. However, I believe we can do better than TeX. Not so much in the typesetting quality, but in the ease-of-use.</p>
+<p>For me, the obvious programming language to choose for this little project was Python, as it is probably the most accessible programming language and generally fun to program in (ok, that’s subjective). I imagined Python’s powerful <span class="caps">OO</span> could be employed to define document styles that could easily be inherited from. Initially, I also planned on the source document being Python source files. While technically possible, I am now convinced that Python’s syntax is not suited for this purpose.</p>
+<p>My goals in developing RinohType are mostly inspired by (La)TeX’s shortcomings and common sense:</p>
+<ul class="simple">
+<li>RinohType should have a simple, transparent design and depend on as few external libraries as possible. This helps to keep installation and usage simple.</li>
+<li>It should be easy to define custom document layouts and visual styles.</li>
+<li>RinohType should accept Unicode input (only!).</li>
+<li>There should be built-in support for images and floats.</li>
+<li>It should be able to perform high-quality typesetting, supporting kerning, ligatures and hyphenation at the least.</li>
+<li>It should be able to typeset complex mathematical formulae.</li>
+<li>It should support modern font technologies (OpenType) and output to <span class="caps">PDF</span>.</li>
+<li>Naturally, it should support obvious features such as cross-references, page numbering, footnotes, table of contents and index generation.</li>
+</ul>
+</div>
+<div class="section" id="current-status">
+<h2><a class="toc-backref" href="#id2">Current Status</a></h2>
+<p>Because of the Unicode requirement, I opted to skip Python 2 and go with Python 3 which uses Unicode for all text strings. This avoids all problems associated with input encoding and simplifies text handling internally.</p>
+<p>At the time of writing, RinohType implements:</p>
+<ul class="simple">
+<li>A simple, but powerful page layout engine, allowing for page headers/footers, columns and floats.</li>
+<li>Typesetting is already quite capable, supporting hyphenation, sub/superscripts, kerning, ligatures, text justification (left, right, justified) and alignment to tab stops.</li>
+<li>A hierarchical styles system, for both paragraphs and other objects such as figures and tables.</li>
+<li>Nestable inline text styling.</li>
+<li>Support for Type1, TrueType and OpenType (both the TrueType and <span class="caps">CFF</span>/Postscript/Type1 variants) fonts.</li>
+<li>A simple <span class="caps">PDF</span> backend. Other backends can be easily added.</li>
+<li>Numbered, unnumbered and definition lists.</li>
+<li>Figures (input as <span class="caps">PDF</span> files) and basic tables (with row/column spanning), with automatically numbered captions.</li>
+<li>Cross-references, automatic page numbering and footnotes.</li>
+<li>Automatically generated table of contents.</li>
+<li>With the help of <a class="reference external" href="https://pypi.python.org/pypi/citeproc-py">citeproc-py</a>, support for citing references from a BibTeX database and generating a bibliography.</li>
+</ul>
+<p>The one major omission from this list is formula rendering. I did try using the TeX formula renderer from matplotlib (the <tt class="docutils literal">mathtext</tt> module) and <a class="reference external" href="http://sourceforge.net/projects/svgmath/">SVGMath</a>, but with unsatisfactory results. I’ve decided to write math rendering from scratch once the core of RinohType (everything listed above) is working properly.</p>
+</div>
+<div class="section" id="example-documents-and-input-formats">
+<h2><a class="toc-backref" href="#id3">Example Documents and Input Formats</a></h2>
+<p>After abandoning the idea to use Python source files as the input format, I opted to go with <span class="caps">XML</span>, since it’s a very common format and, more importantly, allows for validation using <span class="caps">XML</span> schemas. The <a class="reference external" href="https://github.com/brechtm/rinohtype/tree/master/examples/rfic2009"><span class="caps">RFIC</span> example</a> in the RinohType repository makes use of a custom <span class="caps">XML</span> input format, as defined in <tt class="docutils literal">rfic.rnc</tt> (<a class="reference external" href="http://relaxng.org/compact-tutorial-20030326.html"><span class="caps">RELAX</span> <span class="caps">NG</span> Compact</a>). This example shows off most of RinoType’s capabilities. Download the <a class="reference external" href="/files/intro_template.pdf">generated <span class="caps">PDF</span></a> to see the output.</p>
+<p>Guided by the <span class="caps">RFIC</span> example, it should be fairly straightforward (but still a lot of work) to write a DocBook frontend for RinohType. <span class="caps">XML</span> is also a great intermediate format, useful when to-<span class="caps">XML</span> converters for other input formats are available.</p>
+<p><span class="caps">XML</span> is unfortunately not the best format for hand editing. One of the advantages of TeX source files is that they are easy to write and read (the content parts anyway). Luckily, Python’s "native"
+<a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a> is a great markup syntax that is easy to write and read. Additionally, it is extensible, which makes it pretty much the perfect input format for RinohType (I haven’t thought about how to verify rST input yet, though). The <a class="reference external" href="https://github.com/brechtm/rinohtype/tree/master/examples/restructuredtext">rST example</a> attempts to typeset the <a class="reference external" href="http://docutils.sourceforge.net/docs/user/rst/quickstart.html">ReStructuredText Primer</a>. Here is the <a class="reference external" href="/files/intro_rst.pdf">output</a>. The rST parser contained in <tt class="docutils literal">rst.py</tt> will eventually be moved into the core of RinohType as a frontend.</p>
+</div>
+<div class="section" id="evaluation">
+<h2><a class="toc-backref" href="#id4">Evaluation</a></h2>
+<p>Unsurprisingly, even after four years into its development, RinohType still does not provide an option for absolute figure placement, the missing LaTeX feature that started this journey. Of course, a lot of other things needed to be put in place before this could be addressed. While I could implement this feature at this point, there are more pressing things to address.</p>
+<p>I’m pretty happy with the result so far and I’m especially proud of the simplicity and compactness of the code. The <tt class="docutils literal">rinoh</tt> Python package counts less than 6500 lines of code (excluding comments/docstrings and empty lines). This includes both the <span class="caps">PDF</span> backend (1700 lines) and the font parsers (1750 lines), so the core of RinohType comprises only about 3000 lines of code! I think this is in a large part made possible due to the expressive power of Python. Though the fact that I was constantly refactoring must have also been an important factor.</p>
+<p>One aspect that I’m not so enthusiastic about is RinohType’s performance. On my modest <a class="reference external" href="http://ark.intel.com/products/40738/Intel-Celeron-Processor-T3000-1M-Cache-1_80-GHz-800-MHz-FSB">Celeron T3000 1.8 GHz</a> laptop, the average rendering time for a page in the <span class="caps">RFIC</span> example is a disappointing 0.8 seconds. For small documents, this is unlikely to be a problem, but for books it’s problematic. RinohType should become <em>at least</em> a factor of ten faster. I’ve already introduced some optimizations such as <a class="reference external" href="http://stackoverflow.com/questions/1988804/what-is-memoization-and-how-can-i-use-it-in-python">memoization</a> and using generators instead of lists, but it is clearly not cutting it. Looking for an easy solution, I’ve done some quick tests with PyPy3k (rendering the <span class="caps">RFIC</span> example over and over in a loop), but these were rather disappointing; rendering speed was about five times <em>slower</em> compared to CPython. With Cython, I’m not sure what part of the code to enhance with type declarations, as there is no obvious number crunching going on.</p>
+</div>
+<div class="section" id="planned-work">
+<h2><a class="toc-backref" href="#id5">Planned Work</a></h2>
+<p>I first want to finish refactoring and documenting the remaining parts of the code. When this is done, performance tweaking will probably be near the top of my to-do list. Once the current functionality is more or less stable, I’d like to tackle maths typesetting. I’m secretly hoping Microsoft’s mathematical OpenType layout extensions can help me get good results for at least a <a class="reference external" href="http://en.wikipedia.org/wiki/Category:Mathematical_OpenType_typefaces">small number of fonts</a> with minimal effort.</p>
+<p>Some other features that I have been thinking of, in order of likeliness to actually make it into RinohType in the foreseeable future:</p>
+<ul class="simple">
+<li>Manual figure placement!</li>
+<li>Provide a number of standard document/page/font styles</li>
+<li>Fake small capitals for fonts that do not provide any</li>
+<li>Enhance the <span class="caps">PDF</span> backend with support for colors, hyperlinks, bookmarks, etc.</li>
+<li>Provide a RinohType output backend for <a class="reference external" href="http://sphinx-doc.org">Sphinx</a></li>
+<li>Include font definitions for freely available fonts (automatically downloaded when referenced)</li>
+<li>Advanced typesetting features such as Knuth-Plass line breaking and <a class="reference external" href="http://en.wikipedia.org/wiki/Microtypography">microtypography</a> as in PDFTeX (once performance is up to standards)</li>
+<li>DocBook frontend</li>
+<li>Support for non-Western languages; support <span class="caps">RTL</span> text and related OpenType extensions</li>
+<li>Non-rectangular paragraphs</li>
+</ul>
+</div>
+<div class="section" id="for-the-brave-dependencies">
+<h2><a class="toc-backref" href="#id6">For the Brave / Dependencies</a></h2>
+<p>You can try out RinohType by cloning <a class="reference external" href="https://github.com/brechtm/rinohtype">the repository</a>, adding the top-level directory to your <tt class="docutils literal">PYTHON_PATH</tt> and running the examples.</p>
+<p>For the <span class="caps">RFIC</span> example, you will need <a class="reference external" href="https://pypi.python.org/pypi/citeproc-py">citeproc-py</a>. If you want to validate the <span class="caps">XML</span> input, you will also need <a class="reference external" href="http://lxml.de">lxml</a>. For the reStructuredText example, you need <a class="reference external" href="https://pypi.python.org/pypi/docutils">docutils</a>.</p>
+<p>While it should be obvious how to adjust the text styles in the examples, it is not equally obvious how page layout is defined in the <span class="caps">RFIC</span> example. Also, an introduction on how the parsed input data (<span class="caps">XML</span> or rST) is processed might be useful if you want to define another <span class="caps">XML</span> input schema or extend the reStructuredText frontend. For this reason, I plan on following up on this article with a short tutorial covering these topics before I start writing official documentation.</p>
+</div>
+<div class="section" id="the-license">
+<h2><a class="toc-backref" href="#id7">The License</a></h2>
+<p>While this originally started out as just another one of my programming projects, I am investigating the possibility to sell licenses for commercial use, as this could ensure that RinohType is actively developed in the future. I have therefor released RinohType under the Affero <span class="caps">GPL</span>.</p>
+<p>The Affero <span class="caps">GPL</span> ensures that RinohType is free for use in open source projects. I am aware that the viral nature of the <span class="caps">GPL</span> makes it impossible for non-<span class="caps">GPL</span> projects to depend on RinohType, though. Unfortunately, it is this same viral nature that makes it possible to sell commercial-use licenses (a non-intentional side-effect of the copyleft?). Perhaps it is possible to employ a <span class="caps">BSD</span>-like license customized to prohibit commercial use? I have not yet found any examples of such a setup, but I will look into this.</p>
+</div>
+
+            <hr/>
+Share this article on Twitter: <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="brechtmachiels">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<section>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="http://www.mos6581.org/introducing-rinohtype#disqus_thread">
+                Comments
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'mos6581';
+        var disqus_identifier = 'http://www.mos6581.org/introducing-rinohtype';
+    var disqus_url = 'http://www.mos6581.org/introducing-rinohtype';
+
+    (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+            <aside>
+            <hr/>
+            <nav>
+            <ul class="articles_timeline">
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+ 
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2013-11-03T00:00:00">Nov 3, 2013</time>
+            <h4>Category</h4>
+            <a class="category-link" href="/categories.html#RinohType-ref">RinohType</a> 
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article"> 
+                <li><a href="/tags.html#python-ref">python
+                    <span>1</span>
+</a></li>
+            </ul>
+<h4>Stay in Touch</h4>
+<a href="http://twitter.com/brechtmachiels" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-twitter sidebar-social-links"></i></a>
+<a href="http://github.com/brechtm" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-github sidebar-social-links"></i></a>
+<a href="mailto:brecht@mos6581.org" title="My email Address" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-envelope sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+<script type="text/javascript">
+    var disqus_shortname = 'mos6581';
+
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+    </script>
+        <script  language="javascript" type="text/javascript">
+            function uncollapse() {
+                var hash_str = window.location.hash;
+                if (window.location.hash.match(/^#comment-\d+$/))
+                {
+                    var hash_str = '#disqus_thread';
+                }
+                $(hash_str).collapse({
+                    toggle: true
+                    })
+            }
+        </script>
+
+        <script type="text/javascript" language="JavaScript">
+            uncollapse(); 
+        </script>
+    </body>
+</html>
