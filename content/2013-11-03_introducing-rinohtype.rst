@@ -118,3 +118,10 @@ The License
 While this originally started out as just another one of my programming projects, I am investigating the possibility to sell licenses for commercial use, as this could ensure that RinohType is actively developed in the future. I have therefor released RinohType under the Affero GPL.
 
 The Affero GPL ensures that RinohType is free for use in open source projects. I am aware that the viral nature of the GPL makes it impossible for non-GPL projects to depend on RinohType, though. Unfortunately, it is this same viral nature that makes it possible to sell commercial-use licenses (a non-intentional side-effect of the copyleft?). Perhaps it is possible to employ a BSD-like license customized to prohibit commercial use? I have not yet found any examples of such a setup, but I will look into this.
+
+
+Discussion
+==========
+
+See comments on `Hacker News <https://news.ycombinator.com/item?id=6668551>`_ and `Reddit <http://www.reddit.com/r/Python/comments/1pw20k/introducing_rinohtype_the_python_document/>`_.
+
