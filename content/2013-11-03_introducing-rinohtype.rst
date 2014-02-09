@@ -65,6 +65,8 @@ The one major omission from this list is formula rendering. I did try using the 
 Example Documents and Input Formats
 ===================================
 
+**EDIT** Some PDF viewers (Firefox's pdf.js, Evince, ePDFViewer) seem to have a problem with the CFF OpenType fonts embedded in the sample PDF files below. I still need to determine if this is a bug in these viewers or in RinohType (see `issue 2 <https://github.com/brechtm/rinohtype/issues/2>`_).
+
 After abandoning the idea to use Python source files as the input format, I opted to go with XML, since it's a very common format and, more importantly, allows for validation using XML schemas. The `RFIC example <https://github.com/brechtm/rinohtype/tree/master/examples/rfic2009>`_ in the RinohType repository makes use of a custom XML input format, as defined in ``rfic.rnc`` (`RELAX NG Compact <http://relaxng.org/compact-tutorial-20030326.html>`_). This example shows off most of RinoType's capabilities. Download the `generated PDF </files/intro_template.pdf>`_ to see the output.
 
 Guided by the RFIC example, it should be fairly straightforward (but still a lot of work) to write a DocBook frontend for RinohType. XML is also a great intermediate format, useful when to-XML converters for other input formats are available.
