@@ -1,4 +1,5 @@
-.hll { background-color: #ffffcc }
+/* Solarized Light Theme for code snippets */
+.hll { background-color: #ffc }
 .c { color: #93a1a1; font-style: italic } /* Comment */
 .err { color: #dc322f } /* Error */
 .g { color: #657b83 } /* Generic */

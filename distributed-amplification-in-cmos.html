@@ -2,27 +2,33 @@
 <html lang="en-US">
     <head>
         <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Brecht Machiels" />
         <meta name="copyright" content="Brecht Machiels" />
 
+
+
+<meta property="og:title" content="Distributed Amplification in CMOS "/>
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.mos6581.org/distributed-amplification-in-cmos" />
+<meta property="og:description" content="Ph.D. dissertation by Brecht Machiels Download full text. Abstract A distributed amplifier is an amplifier in which a signal is amplified in parallel by a number of transconductive devices such as vacuum tubes or transistors. This is in contrast to the classic cascade amplifier, in which the amplifying devices ..." />
+<meta property="og:site_name" content="mos6581" />
+<meta property="og:article:author" content="Brecht Machiels" />
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@brechtmachiels">
+<meta name="twitter:title" content="Distributed Amplification in CMOS ">
+<meta name="twitter:description" content="Ph.D. dissertation by Brecht Machiels Download full text. Abstract A distributed amplifier is an amplifier in which a signal is amplified in parallel by a number of transconductive devices such as vacuum tubes or transistors. This is in contrast to the classic cascade amplifier, in which the amplifying devices ...">
+
         <title>Distributed Amplification in&nbsp;<span class="caps">CMOS</span>  · mos6581
 </title>
-        <link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
-        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://www.mos6581.org/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://www.mos6581.org/theme/tipuesearch/tipuesearch.css" media="screen">
         <link rel="stylesheet" type="text/css" href="http://www.mos6581.org/theme/css/elegant.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="http://www.mos6581.org/theme/css/solarizedlight.css" media="screen">
         <link rel="stylesheet" type="text/css" href="http://www.mos6581.org/theme/css/custom.css" media="screen">
-        <link rel="shortcut icon" href="http://www.mos6581.org/theme/images/favicon.ico" type="image/x-icon" />
-        <link rel="apple-touch-icon" href="http://www.mos6581.org/theme/images/apple-touch-icon.png" />
-        <link rel="apple-touch-icon" sizes="57x57" href="http://www.mos6581.org/theme/images/apple-touch-icon-57x57.png" />
-        <link rel="apple-touch-icon" sizes="72x72" href="http://www.mos6581.org/theme/images/apple-touch-icon-72x72.png" />
-        <link rel="apple-touch-icon" sizes="114x114" href="http://www.mos6581.org/theme/images/apple-touch-icon-114x114.png" />
-        <link rel="apple-touch-icon" sizes="144x144" href="http://www.mos6581.org/theme/images/apple-touch-icon-144x144.png" />
-        <link rel="icon" href="http://www.mos6581.org/theme/images/apple-touch-icon-144x144.png" />
         <link href="http://www.mos6581.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="mos6581 - Full Atom Feed" />
-        <link href="http://www.mos6581.org/feeds/RinohType.atom.xml" type="application/atom+xml" rel="alternate" title="mos6581 - RinohType Category Atom Feed" />
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -62,7 +68,7 @@
                 <div class="span10">
 <article>
 <div class="row-fluid">
-    <header class="page_header span10 offset2">
+    <header class="page-header span10 offset2">
     <h1><a href="http://www.mos6581.org/distributed-amplification-in-cmos"> Distributed Amplification in&nbsp;<span class="caps">CMOS</span>  </a></h1>
     </header>
 </div>
@@ -72,7 +78,9 @@
 
             <p>Ph.D. dissertation by Brecht&nbsp;Machiels</p>
 <p>Download <a class="reference external" href="/files/Brecht_Machiels__Distributed_Amplification_in_CMOS.pdf">full text</a>.</p>
-<img alt="Cover" class="align-center" src="/images/phd_cover.png" />
+<div class="figure">
+<img alt="Cover" src="/images/phd_cover.png" />
+</div>
 <div class="section" id="abstract">
 <h2>Abstract</h2>
 <p>A distributed amplifier is an amplifier in which a signal is amplified in parallel by a number of transconductive devices such as vacuum tubes or transistors. This is in contrast to the classic cascade amplifier, in which the amplifying devices are connected in series. A limitation of the latter is that its gain-bandwidth product is inherently limited. The distributed amplifier is not subject to the same limitation; gain can be traded for delay, instead of for bandwidth. At the time of its conception over 70 years ago, the distributed amplifier was built using vacuum tubes. More recently, the topology has found renewed interest due to the ability to produce monolithic distributed amplifiers using integrated circuit technology. Researchers have since managed to design distributed amplifiers with bandwidths exceeding 100 GHz in modern <span class="caps">RFIC</span>&nbsp;technologies.</p>
@@ -84,10 +92,50 @@
 <p>Due to its longitudinally reciprocal nature, the traveling-wave transistor is prone to become unstable. While it is shown that it is possible to maintain stability by proper termination of the device, this is not feasible in a realistic setting. For this reason, methods to introduce non-reciprocity are investigated. One option is to make use of the properties of meta- and magnetic materials. As these materials are not available in standard <span class="caps">CMOS</span> processes, design of a lumped non-reciprocal growing-wave amplifier is attempted. Initial simulations employing a unit cell consisting of an inductor, a capacitor and an <span class="caps">NMOS</span> transistor show that stable amplification can indeed be&nbsp;obtained.</p>
 </div>
 
+            <section>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="http://www.mos6581.org/distributed-amplification-in-cmos#disqus_thread">
+                Comments
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+                    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'mos6581';
+        var disqus_identifier = 'http://www.mos6581.org/distributed-amplification-in-cmos';
+    var disqus_url = 'http://www.mos6581.org/distributed-amplification-in-cmos';
+
+    (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
         </div>
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
-      
+<h4>Contact</h4>
+    <a href="http://twitter.com/brechtmachiels" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-twitter sidebar-social-links"></i></a>
+    <a href="http://github.com/brechtm" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-github sidebar-social-links"></i></a>
+    <a href="mailto:brecht@mos6581.org" title="My email Address" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-envelope sidebar-social-links"></i></a>
         </div>
         </section>
     </div>
@@ -96,6 +144,7 @@
                 <div class="span1"></div>
             </div>
         </div>
+        <div id="push"></div>
     </div>
 <footer>
 <div id="footer">
@@ -104,13 +153,52 @@
     </ul>
 </div>
 </footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
-        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
             function validateForm(query)
             {
                 return (query.length > 0);
             }
         </script>
+
+            <script type="text/javascript">
+var disqus_shortname = 'mos6581';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+<script  language="javascript" type="text/javascript">
+function uncollapse() {
+    if (window.location.hash.match(/^#comment-\d+$/)) {
+        $('#disqus_thread').collapse('show');
+    }
+}
+</script>
+<script type="text/javascript" language="JavaScript">
+uncollapse();
+window.onhashchange=function(){
+    if (window.location.hash.match(/^#comment-\d+$/))
+        window.location.reload(true);
+}
+</script>
+<script>
+$('#disqus_thread').on('shown', function () {
+    var link = document.getElementsByClassName('accordion-toggle');
+    var old_innerHTML = link[0].innerHTML;
+    $(link[0]).fadeOut(500, function() {
+        $(this).text('Click here to hide comments').fadeIn(500);
+    });
+    $('#disqus_thread').on('hidden', function () {
+        $(link[0]).fadeOut(500, function() {
+            $(this).text(old_innerHTML).fadeIn(500);
+        });
+    })
+})
+</script>
+
 
     </body>
 </html>

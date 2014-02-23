@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>mos6581</title><link href="http://www.mos6581.org/" rel="alternate"></link><link href="http://www.mos6581.org/feeds/misc.atom.xml" rel="self"></link><id>http://www.mos6581.org/</id><updated>2014-02-23T00:00:00+01:00</updated><entry><title>Exploring an alternative to git-subtree</title><link href="http://www.mos6581.org/git_subtree_alternative" rel="alternate"></link><updated>2014-02-23T00:00:00+01:00</updated><author><name>Brecht Machiels</name></author><id>tag:www.mos6581.org,2014-02-23:git_subtree_alternative</id><summary type="html">
+&lt;p&gt;When you want to include external code in your git repository, for example a
+third-party library or code shared with another team, there are two popular
+options: git-submodule and git-subtree. Unfortunately both suffer from
+some problems and this led me to start thinking about an alternative way to
+handle external repositories.&lt;/p&gt;
+&lt;p&gt;I will first summarize how git-submodule and git-subtree work and discuss their
+drawbacks. I will then introduce an alternative to these, "git-subrepo" and
+present a (partial) proof-of-concept implementation. In the following, we assume
+a single submodule/subtree/subrepo.&lt;/p&gt;
+&lt;div class="section" id="git-submodule"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id7"&gt;git-submodule&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Submodules are the officially supported way of including external repositories;
+git-submodule is included with every git installation. A submodule is
+basically a pointer to a commit of an external git repository. This model works
+well when you want to include a third-party library in your project that
+&lt;em&gt;only occasionally needs to be updated&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;On the other hand, if you use a submodule for a tightly-coupled library to
+which you will often be making changes, you will find that submodules are not
+the answer. In this use case, you will simultaneously be making changes to your
+top-level project and the library. When the time has come to commit these
+changes, you first need to commit your changes in the submodule, then do the
+same in your top-level project. Oh, and make sure you push the changes to the
+submodule before committing and pushing the top-level changes or other people
+will run into trouble when pulling in your top-level commit. Things get even
+more exciting when you want to push that submodule commit afterwards to fix
+things, only to find out that someone sneaked in a commit in the meantime! Now
+you’ll have to create a new commit on the top-level project to point it to your
+rebased commit, hah! In short: too much of a hassle and far too easy to make a mess.&lt;/p&gt;
+&lt;p&gt;If that’s not enough to convince you, you should try branching with this setup.
+You’ll have to manually branch (and later merge) each of your submodules when
+you create a new branch.&lt;/p&gt;
+&lt;p&gt;In the past, I have worked with a git repository containing a dozen
+tightly-coupled submodules for code-sharing with other teams. Needless to say,
+it didn’t take very long to realize that submodules are not suited for that use case.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="git-subtree"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id8"&gt;git-subtree&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/apenwarr/git-subtree/blob/master/git-subtree.txt"&gt;git-subtree&lt;/a&gt; avoids most of the problems submodules suffer from. During everyday
+work, you won’t have to worry about a thing, as git-subtree is only needed when
+interfacing with external repositories. So, most of the time you are working
+with a single repository; the library is simply included in your repository
+as a subdirectory. That means that branching is also transparent. This is
+infinitely more comfortable than mucking about with submodules.&lt;/p&gt;
+&lt;p&gt;At some point you can choose to have git-subtree extract the changes to your
+library from the commit history. This will create a new branch with a commit for
+each commit of the top-level project that includes changes to the library. The
+root directory of this new branch is equal to the subdirectory where the library
+resides. The new branch can then be pushed to the library’s remote, where it can
+be merged with other branches. After all, that’s the point of having a submodule
+or a subtree.&lt;/p&gt;
+&lt;p&gt;Unfortunately, splitting out these subtree changes &lt;a class="reference external" href="http://stackoverflow.com/questions/16134975/reduce-increasing-time-to-push-a-subtree"&gt;can take a long time&lt;/a&gt;. And
+unless you use the &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;--rejoin&lt;/span&gt;&lt;/tt&gt; option, git-subtree needs to perform this splitting
+over and over for all commits in your history on each split. The &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;--rejoin&lt;/span&gt;&lt;/tt&gt; option
+merges the new subtree branch back into the main project’s branch, duplicating
+the existing commits. While this raises no technical worries, your history will
+be complicated unnecessarily.&lt;/p&gt;
+&lt;!-- New commits on fetched from the remote can also be merged back into the main
+project's branch (using the subtree merge strategy, hence the name git-subtree). --&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-alternative-git-subrepo"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id9"&gt;The alternative, git-subrepo&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;It would be better if changes were split between the main project and the
+library at commit time, basically yielding two actual commits. The main
+project commit would then simply (subtree-)merge in the
+library’s commit. This way the library’s commit can be used as-is for pushing to
+the library remote. Let’s illustrate this with a figure.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="" src="images/subrepo_commit.png"/&gt;
+&lt;p class="caption"&gt;Subrepo commit&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;The &lt;em&gt;master&lt;/em&gt; branch (left) holds the commits of the main project and the &lt;em&gt;library&lt;/em&gt;
+branch (right) holds the commits of the library (shown in red). Let’s refer to
+the latter as the &lt;em&gt;subrepo branch&lt;/em&gt; and &lt;em&gt;subrepo commits&lt;/em&gt; for lack of better
+terms. The "logical commits" C and E contain no changes to the library; only a
+single commit is created. Commits A, B and D do make changes to the library, so
+two actual commits are created for each logical commit.&lt;/p&gt;
+&lt;p&gt;Commit A is the commit that introduces the subdirectory where the library
+resides, so this yields the first commit of the library branch. As with
+git-subtree, an existing library branch could be subtree-merged into the master
+branch first, in which case we would build on that history.&lt;/p&gt;
+&lt;p&gt;Note that the library branch is completely independent of the master branch, so
+it can be pushed to the library’s remote at any point in time. There is no need
+for splitting or rejoining as is the case with git-subtree.&lt;/p&gt;
+&lt;p&gt;Aside from splitting up commits, we also need to take special care when merging
+and rebasing. The figure below illustrates how &lt;strong&gt;merges&lt;/strong&gt; should be handled. The
+branched-off subrepo commits first need to be merged into the &lt;em&gt;library&lt;/em&gt; branch.
+As with the commit-splitting above, the resulting subrepo merge-commit is
+referenced as a parent of the merge-commit on the main &lt;em&gt;master&lt;/em&gt; branch.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="" src="images/subrepo_merge.png"/&gt;
+&lt;p class="caption"&gt;Subrepo merge&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Rebasing&lt;/strong&gt; is fairly straight-forward. A subrepo commit is rebased onto the
+&lt;em&gt;library&lt;/em&gt; subrepo branch. The corresponding main-line commit is rebased
+onto the &lt;em&gt;master&lt;/em&gt; branch and references the rebased subrepo commit as a parent.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img alt="" src="images/subrepo_rebase.png"/&gt;
+&lt;p class="caption"&gt;Subrepo rebase&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="proof-of-concept"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id10"&gt;Proof of concept&lt;/a&gt;&lt;/h3&gt;
+&lt;!-- I have to say that I was pleased to find that the
+content-addressable filesystem that lies at the core of git
+has a very simple and elegant design. I was not prepared for that, after
+witnessing the small disaster that the git command line interface is. --&gt;
+&lt;p&gt;I hacked together &lt;a class="reference external" href="https://github.com/brechtm/git-subrepo"&gt;post-commit and post-merge hook scripts&lt;/a&gt; to implement some
+of the functionality discussed above. These hooks expect you specify the subrepo
+directories in a &lt;tt class="docutils literal"&gt;.gitsubrepos&lt;/tt&gt; file in the root of your repository. Each
+subrepo directory should be specified on its own line.&lt;/p&gt;
+&lt;p&gt;The post-commit hook should work fairly well. Since this is a &lt;em&gt;post&lt;/em&gt;-commit
+script, you simply perform your commit as usual. The hook script will create the
+subrepo commits for each of the subrepos with changes, cloning the commit
+metadata (timestamp, author) from your commit. A new main-line commit will also
+be created that references the subrepo commit as a parent. After finishing, git
+will still report the &lt;span class="caps"&gt;SHA&lt;/span&gt;-1 of the original commit though, so don’t let that
+fool you.&lt;/p&gt;
+&lt;p&gt;Note that branching is handled transparently. The parent for the split-off
+subrepo commit is found by walking the history down to the last commit that
+merges in a subrepo commit. Branches have no influence on this.&lt;/p&gt;
+&lt;p&gt;During merging, you handle conflicts as usual, after which the post-merge hook
+will try to create merge commits for each of the subrepos. In its current state,
+the hook will produce some unexpected results in some situations though.&lt;/p&gt;
+&lt;p&gt;I have not yet attempted to write a hook to handle rebases and amend-commits.
+This will almost require a &lt;a class="reference external" href="https://www.kernel.org/pub/software/scm/git/docs/githooks.html#_post_rewrite"&gt;post-rewrite&lt;/a&gt; hook.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="probl-err-challenges"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id11"&gt;Probl… err, challenges&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Assuming it is possible to write a post-rewrite script to handle rebasing and
+amend-commits, I believe subrepos could be a better alternative to git-subtree.
+Unfortunately, I also see some problems with this solution.&lt;/p&gt;
+&lt;p&gt;First, I don’t think hooks are the correct way to implement subrepos, but I
+have no idea how to go about it otherwise. I’m not aware of any other git
+features that allow plugging into the commit, merge and rebase processes. The
+alternative is to require the user to use different commands for performing
+these operations, which is something I want to avoid.&lt;/p&gt;
+&lt;p&gt;Second, the way the history with subrepo commits is displayed in git-log and
+gitk (and other graphical git front-ends) leaves something to be desired. For
+instance, if you commit changes to N subrepos you will end up with N+1 commits,
+which clutters the commit history even for small N. Take a look at this &lt;a class="reference external" href="https://github.com/brechtm/git-subrepo-test"&gt;sample
+repository&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Also, each commit with subrepo changes will be displayed as a merge commit. Gitk
+does not show changes in the subrepo if this commit only merges in a single
+subrepo commit. When multiple subrepo commits are merged in, gitk does show the
+changes, but as a complicated N-way merge diff.&lt;/p&gt;
+&lt;p&gt;Ideally, gitk should be made aware of subrepos; it should group all subrepo
+commits together with the main commit and display it as a single entry. I feel
+this is a fair price to pay for proper, first-class subrepositories support.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="random-ideas"&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="#id12"&gt;Random Ideas&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;For future reference, here are some ideas for git-subrepo.&lt;/p&gt;
+&lt;ol class="arabic"&gt;
+&lt;li&gt;&lt;p class="first"&gt;When a commit includes changes to one or more subrepos, the commit message
+template should include sections for each subrepo. This way the user can
+specify the commit message for each of the subrepo commits. This is much
+better than the current behaviour where the same commit message is used for
+the main commit and all subrepo commits. This will require a
+&lt;a class="reference external" href="https://www.kernel.org/pub/software/scm/git/docs/githooks.html#_prepare_commit_msg"&gt;prepare-commit-msg&lt;/a&gt; hook.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;git-subrepo should create branches to track the subrepos. They could have the
+following format:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+subrepo/&amp;lt;subrepo name&amp;gt;/&amp;lt;HEAD branch name&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;This allows the user to easily inspect the history of subrepos separately.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</summary><category term="git"></category></entry></feed>

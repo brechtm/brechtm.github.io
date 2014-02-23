@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Brecht Machiels" />
+        <meta name="copyright" content="Brecht Machiels" />
+
+
+<meta name="keywords" content="git, misc, " />
+
+<meta property="og:title" content="Exploring an alternative to git-subtree "/>
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.mos6581.org/git_subtree_alternative" />
+<meta property="og:description" content="When you want to include external code in your git repository, for example a third-party library or code shared with another team, there are two popular options: git-submodule and git-subtree. Unfortunately both suffer from some problems and this led me to start thinking about an alternative way to handle external ..." />
+<meta property="og:site_name" content="mos6581" />
+<meta property="og:article:author" content="Brecht Machiels" />
+<meta property="og:article:published_time" content="2014-02-23T00:00:00" />
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@brechtmachiels">
+<meta name="twitter:title" content="Exploring an alternative to git-subtree ">
+<meta name="twitter:description" content="When you want to include external code in your git repository, for example a third-party library or code shared with another team, there are two popular options: git-submodule and git-subtree. Unfortunately both suffer from some problems and this led me to start thinking about an alternative way to handle external ...">
+
+        <title>Exploring an alternative to git-subtree  · mos6581
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://www.mos6581.org/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://www.mos6581.org/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://www.mos6581.org/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://www.mos6581.org/theme/css/custom.css" media="screen">
+        <link href="http://www.mos6581.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="mos6581 - Full Atom Feed" />
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-45391629-1', 'mos6581.org');
+    ga('send', 'pageview');
+  </script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://www.mos6581.org/"><span class=site-name><span style='color:black;'>mos</span><span style='color:#AA1032;'>6581</span></span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://www.mos6581.org">Home</a></li>
+                            <li ><a href="http://www.mos6581.org/categories.html">Categories</a></li>
+                            <li ><a href="http://www.mos6581.org/tags.html">Tags</a></li>
+                            <li ><a href="http://www.mos6581.org/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://www.mos6581.org/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://www.mos6581.org/git_subtree_alternative"> Exploring an alternative to&nbsp;git-subtree  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#git-submodule" id="id7">git-submodule</a></li>
+<li><a class="reference internal" href="#git-subtree" id="id8">git-subtree</a></li>
+<li><a class="reference internal" href="#the-alternative-git-subrepo" id="id9">The alternative, git-subrepo</a><ul>
+<li><a class="reference internal" href="#proof-of-concept" id="id10">Proof of concept</a></li>
+<li><a class="reference internal" href="#probl-err-challenges" id="id11">Probl… err, challenges</a></li>
+<li><a class="reference internal" href="#random-ideas" id="id12">Random Ideas</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            
+<p>When you want to include external code in your git repository, for example a
+third-party library or code shared with another team, there are two popular
+options: git-submodule and git-subtree. Unfortunately both suffer from
+some problems and this led me to start thinking about an alternative way to
+handle external repositories.</p>
+<p>I will first summarize how git-submodule and git-subtree work and discuss their
+drawbacks. I will then introduce an alternative to these, "git-subrepo" and
+present a (partial) proof-of-concept implementation. In the following, we assume
+a single submodule/subtree/subrepo.</p>
+<div class="section" id="git-submodule">
+<h2><a class="toc-backref" href="#id7">git-submodule</a></h2>
+<p>Submodules are the officially supported way of including external repositories;
+git-submodule is included with every git installation. A submodule is
+basically a pointer to a commit of an external git repository. This model works
+well when you want to include a third-party library in your project that
+<em>only occasionally needs to be updated</em>.</p>
+<p>On the other hand, if you use a submodule for a tightly-coupled library to
+which you will often be making changes, you will find that submodules are not
+the answer. In this use case, you will simultaneously be making changes to your
+top-level project and the library. When the time has come to commit these
+changes, you first need to commit your changes in the submodule, then do the
+same in your top-level project. Oh, and make sure you push the changes to the
+submodule before committing and pushing the top-level changes or other people
+will run into trouble when pulling in your top-level commit. Things get even
+more exciting when you want to push that submodule commit afterwards to fix
+things, only to find out that someone sneaked in a commit in the meantime! Now
+you’ll have to create a new commit on the top-level project to point it to your
+rebased commit, hah! In short: too much of a hassle and far too easy to make a mess.</p>
+<p>If that’s not enough to convince you, you should try branching with this setup.
+You’ll have to manually branch (and later merge) each of your submodules when
+you create a new branch.</p>
+<p>In the past, I have worked with a git repository containing a dozen
+tightly-coupled submodules for code-sharing with other teams. Needless to say,
+it didn’t take very long to realize that submodules are not suited for that use case.</p>
+</div>
+<div class="section" id="git-subtree">
+<h2><a class="toc-backref" href="#id8">git-subtree</a></h2>
+<p><a class="reference external" href="https://github.com/apenwarr/git-subtree/blob/master/git-subtree.txt">git-subtree</a> avoids most of the problems submodules suffer from. During everyday
+work, you won’t have to worry about a thing, as git-subtree is only needed when
+interfacing with external repositories. So, most of the time you are working
+with a single repository; the library is simply included in your repository
+as a subdirectory. That means that branching is also transparent. This is
+infinitely more comfortable than mucking about with submodules.</p>
+<p>At some point you can choose to have git-subtree extract the changes to your
+library from the commit history. This will create a new branch with a commit for
+each commit of the top-level project that includes changes to the library. The
+root directory of this new branch is equal to the subdirectory where the library
+resides. The new branch can then be pushed to the library’s remote, where it can
+be merged with other branches. After all, that’s the point of having a submodule
+or a subtree.</p>
+<p>Unfortunately, splitting out these subtree changes <a class="reference external" href="http://stackoverflow.com/questions/16134975/reduce-increasing-time-to-push-a-subtree">can take a long time</a>. And
+unless you use the <tt class="docutils literal"><span class="pre">--rejoin</span></tt> option, git-subtree needs to perform this splitting
+over and over for all commits in your history on each split. The <tt class="docutils literal"><span class="pre">--rejoin</span></tt> option
+merges the new subtree branch back into the main project’s branch, duplicating
+the existing commits. While this raises no technical worries, your history will
+be complicated unnecessarily.</p>
+<!-- New commits on fetched from the remote can also be merged back into the main
+project's branch (using the subtree merge strategy, hence the name git-subtree). -->
+</div>
+<div class="section" id="the-alternative-git-subrepo">
+<h2><a class="toc-backref" href="#id9">The alternative, git-subrepo</a></h2>
+<p>It would be better if changes were split between the main project and the
+library at commit time, basically yielding two actual commits. The main
+project commit would then simply (subtree-)merge in the
+library’s commit. This way the library’s commit can be used as-is for pushing to
+the library remote. Let’s illustrate this with a figure.</p>
+<div class="figure">
+<img alt="" src="images/subrepo_commit.png"/>
+<p class="caption">Subrepo commit</p>
+</div>
+<p>The <em>master</em> branch (left) holds the commits of the main project and the <em>library</em>
+branch (right) holds the commits of the library (shown in red). Let’s refer to
+the latter as the <em>subrepo branch</em> and <em>subrepo commits</em> for lack of better
+terms. The "logical commits" C and E contain no changes to the library; only a
+single commit is created. Commits A, B and D do make changes to the library, so
+two actual commits are created for each logical commit.</p>
+<p>Commit A is the commit that introduces the subdirectory where the library
+resides, so this yields the first commit of the library branch. As with
+git-subtree, an existing library branch could be subtree-merged into the master
+branch first, in which case we would build on that history.</p>
+<p>Note that the library branch is completely independent of the master branch, so
+it can be pushed to the library’s remote at any point in time. There is no need
+for splitting or rejoining as is the case with git-subtree.</p>
+<p>Aside from splitting up commits, we also need to take special care when merging
+and rebasing. The figure below illustrates how <strong>merges</strong> should be handled. The
+branched-off subrepo commits first need to be merged into the <em>library</em> branch.
+As with the commit-splitting above, the resulting subrepo merge-commit is
+referenced as a parent of the merge-commit on the main <em>master</em> branch.</p>
+<div class="figure">
+<img alt="" src="images/subrepo_merge.png"/>
+<p class="caption">Subrepo merge</p>
+</div>
+<p><strong>Rebasing</strong> is fairly straight-forward. A subrepo commit is rebased onto the
+<em>library</em> subrepo branch. The corresponding main-line commit is rebased
+onto the <em>master</em> branch and references the rebased subrepo commit as a parent.</p>
+<div class="figure">
+<img alt="" src="images/subrepo_rebase.png"/>
+<p class="caption">Subrepo rebase</p>
+</div>
+<div class="section" id="proof-of-concept">
+<h3><a class="toc-backref" href="#id10">Proof of concept</a></h3>
+<!-- I have to say that I was pleased to find that the
+content-addressable filesystem that lies at the core of git
+has a very simple and elegant design. I was not prepared for that, after
+witnessing the small disaster that the git command line interface is. -->
+<p>I hacked together <a class="reference external" href="https://github.com/brechtm/git-subrepo">post-commit and post-merge hook scripts</a> to implement some
+of the functionality discussed above. These hooks expect you specify the subrepo
+directories in a <tt class="docutils literal">.gitsubrepos</tt> file in the root of your repository. Each
+subrepo directory should be specified on its own line.</p>
+<p>The post-commit hook should work fairly well. Since this is a <em>post</em>-commit
+script, you simply perform your commit as usual. The hook script will create the
+subrepo commits for each of the subrepos with changes, cloning the commit
+metadata (timestamp, author) from your commit. A new main-line commit will also
+be created that references the subrepo commit as a parent. After finishing, git
+will still report the <span class="caps">SHA</span>-1 of the original commit though, so don’t let that
+fool you.</p>
+<p>Note that branching is handled transparently. The parent for the split-off
+subrepo commit is found by walking the history down to the last commit that
+merges in a subrepo commit. Branches have no influence on this.</p>
+<p>During merging, you handle conflicts as usual, after which the post-merge hook
+will try to create merge commits for each of the subrepos. In its current state,
+the hook will produce some unexpected results in some situations though.</p>
+<p>I have not yet attempted to write a hook to handle rebases and amend-commits.
+This will almost require a <a class="reference external" href="https://www.kernel.org/pub/software/scm/git/docs/githooks.html#_post_rewrite">post-rewrite</a> hook.</p>
+</div>
+<div class="section" id="probl-err-challenges">
+<h3><a class="toc-backref" href="#id11">Probl… err, challenges</a></h3>
+<p>Assuming it is possible to write a post-rewrite script to handle rebasing and
+amend-commits, I believe subrepos could be a better alternative to git-subtree.
+Unfortunately, I also see some problems with this solution.</p>
+<p>First, I don’t think hooks are the correct way to implement subrepos, but I
+have no idea how to go about it otherwise. I’m not aware of any other git
+features that allow plugging into the commit, merge and rebase processes. The
+alternative is to require the user to use different commands for performing
+these operations, which is something I want to avoid.</p>
+<p>Second, the way the history with subrepo commits is displayed in git-log and
+gitk (and other graphical git front-ends) leaves something to be desired. For
+instance, if you commit changes to N subrepos you will end up with N+1 commits,
+which clutters the commit history even for small N. Take a look at this <a class="reference external" href="https://github.com/brechtm/git-subrepo-test">sample
+repository</a>.</p>
+<p>Also, each commit with subrepo changes will be displayed as a merge commit. Gitk
+does not show changes in the subrepo if this commit only merges in a single
+subrepo commit. When multiple subrepo commits are merged in, gitk does show the
+changes, but as a complicated N-way merge diff.</p>
+<p>Ideally, gitk should be made aware of subrepos; it should group all subrepo
+commits together with the main commit and display it as a single entry. I feel
+this is a fair price to pay for proper, first-class subrepositories support.</p>
+</div>
+<div class="section" id="random-ideas">
+<h3><a class="toc-backref" href="#id12">Random Ideas</a></h3>
+<p>For future reference, here are some ideas for git-subrepo.</p>
+<ol class="arabic">
+<li><p class="first">When a commit includes changes to one or more subrepos, the commit message
+template should include sections for each subrepo. This way the user can
+specify the commit message for each of the subrepo commits. This is much
+better than the current behaviour where the same commit message is used for
+the main commit and all subrepo commits. This will require a
+<a class="reference external" href="https://www.kernel.org/pub/software/scm/git/docs/githooks.html#_prepare_commit_msg">prepare-commit-msg</a> hook.</p>
+</li>
+<li><p class="first">git-subrepo should create branches to track the subrepos. They could have the
+following format:</p>
+<pre class="literal-block">
+subrepo/&lt;subrepo name&gt;/&lt;HEAD branch name&gt;
+</pre>
+<p>This allows the user to easily inspect the history of subrepos separately.</p>
+</li>
+</ol>
+</div>
+</div>
+
+            <section>
+    <p id="post-share-links">
+    Share on:
+    <a href="http://twitter.com/home?status=Exploring%20an%20alternative%20to%C2%A0git-subtree%20 http%3A//www.mos6581.org/git_subtree_alternative" target="_blank" title="Share on Twitter">Twitter</a>
+    ❄
+    <a href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]=http%3A//www.mos6581.org/git_subtree_alternative&p[images][0]=&p[title]=Exploring%20an%20alternative%20to%C2%A0git-subtree%20&p[summary]=%0A%3Cp%3EWhen%20you%20want%20to%20include%20external%20code%20in%20your%20git%20repository%2C%20for%20example%20a%0Athird-party%20library%20or%20code%20shared%20with%20another%20team%2C%20there%20are%20two%20popular%0Aoptions%3A%20git-submodule%20and%20git-subtree.%20Unfortunately%20both%20suffer%20from%0Asome%20problems%20and%20this%20led%20me%20to%20start%20thinking%20about%20an%20alternative%20way%20to%0Ahandle%20external%20...%3C/p%3E" target="_blank" title="Share on Facebook">Facebook</a>
+    ❄
+    <a href="https://plus.google.com/share?url=http%3A//www.mos6581.org/git_subtree_alternative" target="_blank" title="Share on Google Plus">Google+</a>
+    ❄
+    <a href="mailto:?subject=Exploring%20an%20alternative%20to%C2%A0git-subtree%20&body=http%3A//www.mos6581.org/git_subtree_alternative" target="_blank" title="Share via Email">Email</a>
+    </p>
+</section>
+
+            <section>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="http://www.mos6581.org/git_subtree_alternative#disqus_thread">
+                Comments
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+                    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'mos6581';
+        var disqus_identifier = 'http://www.mos6581.org/git_subtree_alternative';
+    var disqus_url = 'http://www.mos6581.org/git_subtree_alternative';
+
+    (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2014-02-23T00:00:00">Feb 23, 2014</time>
+            <h4>Category</h4>
+            <a class="category-link" href="http://www.mos6581.org/categories.html#misc-ref">misc</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://www.mos6581.org/tags.html#git-ref">git
+                    <span>1</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="http://twitter.com/brechtmachiels" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-twitter sidebar-social-links"></i></a>
+    <a href="http://github.com/brechtm" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-github sidebar-social-links"></i></a>
+    <a href="mailto:brecht@mos6581.org" title="My email Address" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-envelope sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+            <script type="text/javascript">
+var disqus_shortname = 'mos6581';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+<script  language="javascript" type="text/javascript">
+function uncollapse() {
+    if (window.location.hash.match(/^#comment-\d+$/)) {
+        $('#disqus_thread').collapse('show');
+    }
+}
+</script>
+<script type="text/javascript" language="JavaScript">
+uncollapse();
+window.onhashchange=function(){
+    if (window.location.hash.match(/^#comment-\d+$/))
+        window.location.reload(true);
+}
+</script>
+<script>
+$('#disqus_thread').on('shown', function () {
+    var link = document.getElementsByClassName('accordion-toggle');
+    var old_innerHTML = link[0].innerHTML;
+    $(link[0]).fadeOut(500, function() {
+        $(this).text('Click here to hide comments').fadeIn(500);
+    });
+    $('#disqus_thread').on('hidden', function () {
+        $(link[0]).fadeOut(500, function() {
+            $(this).text(old_innerHTML).fadeIn(500);
+        });
+    })
+})
+</script>
+
+
+    </body>
+</html>

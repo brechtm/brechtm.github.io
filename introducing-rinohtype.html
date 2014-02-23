@@ -2,28 +2,35 @@
 <html lang="en-US">
     <head>
         <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Brecht Machiels" />
         <meta name="copyright" content="Brecht Machiels" />
 
+
 <meta name="keywords" content="python, RinohType, " />
-        <title>Introducing&nbsp;RinohType  - the Python document processor  · mos6581
+
+<meta property="og:title" content="Introducing RinohType  - the Python document processor "/>
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.mos6581.org/introducing-rinohtype" />
+<meta property="og:description" content="I originally planned to release RinohType into wild only after I had finished a full review, refactoring and documenting of the code. I also wanted to write some API documentation and a small tutorial, all in the spirit of making a good first impression. Turns out all this takes a ..." />
+<meta property="og:site_name" content="mos6581" />
+<meta property="og:article:author" content="Brecht Machiels" />
+<meta property="og:article:published_time" content="2013-11-03T00:00:00" />
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@brechtmachiels">
+<meta name="twitter:title" content="Introducing RinohType  - the Python document processor ">
+<meta name="twitter:description" content="I originally planned to release RinohType into wild only after I had finished a full review, refactoring and documenting of the code. I also wanted to write some API documentation and a small tutorial, all in the spirit of making a good first impression. Turns out all this takes a ...">
+
+        <title>Introducing RinohType  - the Python document processor  · mos6581
 </title>
-        <link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
-        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://www.mos6581.org/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://www.mos6581.org/theme/tipuesearch/tipuesearch.css" media="screen">
         <link rel="stylesheet" type="text/css" href="http://www.mos6581.org/theme/css/elegant.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="http://www.mos6581.org/theme/css/solarizedlight.css" media="screen">
         <link rel="stylesheet" type="text/css" href="http://www.mos6581.org/theme/css/custom.css" media="screen">
-        <link rel="shortcut icon" href="http://www.mos6581.org/theme/images/favicon.ico" type="image/x-icon" />
-        <link rel="apple-touch-icon" href="http://www.mos6581.org/theme/images/apple-touch-icon.png" />
-        <link rel="apple-touch-icon" sizes="57x57" href="http://www.mos6581.org/theme/images/apple-touch-icon-57x57.png" />
-        <link rel="apple-touch-icon" sizes="72x72" href="http://www.mos6581.org/theme/images/apple-touch-icon-72x72.png" />
-        <link rel="apple-touch-icon" sizes="114x114" href="http://www.mos6581.org/theme/images/apple-touch-icon-114x114.png" />
-        <link rel="apple-touch-icon" sizes="144x144" href="http://www.mos6581.org/theme/images/apple-touch-icon-144x144.png" />
-        <link rel="icon" href="http://www.mos6581.org/theme/images/apple-touch-icon-144x144.png" />
         <link href="http://www.mos6581.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="mos6581 - Full Atom Feed" />
-        <link href="http://www.mos6581.org/feeds/RinohType.atom.xml" type="application/atom+xml" rel="alternate" title="mos6581 - RinohType Category Atom Feed" />
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -63,7 +70,7 @@
                 <div class="span10">
 <article>
 <div class="row-fluid">
-    <header class="page_header span10 offset2">
+    <header class="page-header span10 offset2">
     <h1><a href="http://www.mos6581.org/introducing-rinohtype"> Introducing&nbsp;RinohType  <small> the Python document processor </small>  </a></h1>
     </header>
 </div>
@@ -90,11 +97,12 @@
     <div class="span8 article-content">
 
             
+            
 <p>I originally planned to release RinohType into wild only after I had finished a full review, refactoring and documenting of the code. I also wanted to write some <span class="caps">API</span> documentation and a small tutorial, all in the spirit of making a good first impression. Turns out all this takes a huge amount of time! So I’ve decided to dump the code in its current state onto GitHub, write a blog article about it and await some valuable feedback while I resume my refactoring and documenting chore.</p>
 <p>If you decide to play around with the code, please bear in mind that this is just a preview; your experience might not be as smooth as I intend it to be eventually.</p>
 <div class="section" id="motivation">
 <h2><a class="toc-backref" href="#id1">Motivation</a></h2>
-<p>Somewhere back in 2009, I was using <a class="reference external" href="http://en.wikipedia.org/wiki/LaTeX">LaTeX</a> to write a paper on some of my <a class="reference external" href="http://www.mos6581.org/distributed-amplification-in-cmos">PhD research</a>. I had used LaTeX before for a number of lab reports and two master’s theses, so I was already experienced with it. While I find working with LaTeX is generally a smooth experience, I did encounter some annoyances over the years. The particular annoyance of the day was figure placement. Where LaTeX’s automatic figure placement is pretty good in longer texts, I find it extremely frustrating when writing a short paper. For these papers, I basically want to place my figures manually, exactly where I want them (figure 2 goes in the top of the left column on page 2, for example). However, this doesn’t seem to be an option with LaTeX, so I ended up moving my <tt class="docutils literal">\includegraphics</tt> directive around in the LaTeX source document in a trial-and-error fashion to have the figure eventually appear where I wanted it to be. Basically, this meant moving all my <tt class="docutils literal">\includegraphics</tt> directives to a location far from near the text where it would end up in the rendered document. After a good hour of messing around with this and <a class="reference external" href="http://www.ntg.nl/pipermail/ntg-context/2008/037150.html">exploring</a>  two alternatives to LaTeX (<a class="reference external" href="http://en.wikipedia.org/wiki/Lout_(software)">Lout</a> and <a class="reference external" href="http://en.wikipedia.org/wiki/ConTeXt">ConTeXt</a>), I said to myself, <em>Enough! I’m writing my own document processor!</em> And so I set out to build the definitive replacement for LaTeX.</p>
+<p>Somewhere back in 2009, I was using <a class="reference external" href="http://en.wikipedia.org/wiki/LaTeX">LaTeX</a> to write a paper on some of my <a class="reference external" href="{filename}pages/thesis.rst">PhD research</a>. I had used LaTeX before for a number of lab reports and two master’s theses, so I was already experienced with it. While I find working with LaTeX is generally a smooth experience, I did encounter some annoyances over the years. The particular annoyance of the day was figure placement. Where LaTeX’s automatic figure placement is pretty good in longer texts, I find it extremely frustrating when writing a short paper. For these papers, I basically want to place my figures manually, exactly where I want them (figure 2 goes in the top of the left column on page 2, for example). However, this doesn’t seem to be an option with LaTeX, so I ended up moving my <tt class="docutils literal">\includegraphics</tt> directive around in the LaTeX source document in a trial-and-error fashion to have the figure eventually appear where I wanted it to be. Basically, this meant moving all my <tt class="docutils literal">\includegraphics</tt> directives to a location far from near the text where it would end up in the rendered document. After a good hour of messing around with this and <a class="reference external" href="http://www.ntg.nl/pipermail/ntg-context/2008/037150.html">exploring</a>  two alternatives to LaTeX (<a class="reference external" href="http://en.wikipedia.org/wiki/Lout_(software)">Lout</a> and <a class="reference external" href="http://en.wikipedia.org/wiki/ConTeXt">ConTeXt</a>), I said to myself, <em>Enough! I’m writing my own document processor!</em> And so I set out to build the definitive replacement for LaTeX.</p>
 <p>It is worth pointing out the other gripes I have with (La)TeX at this point. I will probably regret this later (I have the impression TeXies can be quite fanatical), but here we go:</p>
 <ul class="simple">
 <li>TeX is not transparent. It is a huge, complex system. To make things worse, there are a number of different TeX distributions, each organizing things in a slightly different way. With hundreds of megabytes and seemingly millions of files for a typical TeX installation, I have no idea what is going on when TeX processes a document. <a class="reference external" href="http://www.ctan.org/pkg/kpathsea">kpathsea</a> is a testament to a part of this complexity.</li>
@@ -185,9 +193,20 @@
 <p>See comments on <a class="reference external" href="https://news.ycombinator.com/item?id=6668551">Hacker News</a> and <a class="reference external" href="http://www.reddit.com/r/Python/comments/1pw20k/introducing_rinohtype_the_python_document/">Reddit</a>.</p>
 </div>
 
-            <hr/>
-Share this article on Twitter: <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="brechtmachiels">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-<section>
+            <section>
+    <p id="post-share-links">
+    Share on:
+    <a href="http://twitter.com/home?status=Introducing%C2%A0RinohType%20the%20Python%20document%20processor http%3A//www.mos6581.org/introducing-rinohtype" target="_blank" title="Share on Twitter">Twitter</a>
+    ❄
+    <a href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]=http%3A//www.mos6581.org/introducing-rinohtype&p[images][0]=&p[title]=Introducing%C2%A0RinohType%20the%20Python%20document%20processor&p[summary]=%0A%3Cp%3EI%20originally%20planned%20to%20release%20RinohType%20into%20wild%20only%20after%20I%20had%20finished%20a%20full%20review%2C%20refactoring%20and%20documenting%20of%20the%20code.%20I%20also%20wanted%20to%20write%20some%20%3Cspan%20class%3D%22caps%22%3EAPI%3C/span%3E%20documentation%20and%20a%20small%20tutorial%2C%20all%20in%20the%20spirit%20of%20making%20a%20good%20first%20impression.%20Turns%20out%20all%20this%20takes%20a%20...%3C/p%3E" target="_blank" title="Share on Facebook">Facebook</a>
+    ❄
+    <a href="https://plus.google.com/share?url=http%3A//www.mos6581.org/introducing-rinohtype" target="_blank" title="Share on Google Plus">Google+</a>
+    ❄
+    <a href="mailto:?subject=Introducing%C2%A0RinohType%20the%20Python%20document%20processor&body=http%3A//www.mos6581.org/introducing-rinohtype" target="_blank" title="Share via Email">Email</a>
+    </p>
+</section>
+
+            <section>
 <div class="accordion" id="accordion2">
     <div class="accordion-group">
         <div class="accordion-heading">
@@ -199,7 +218,7 @@ Share this article on Twitter: <a href="http://twitter.com/share" class="twitter
         <div id="disqus_thread" class="accordion-body collapse">
             <div class="accordion-inner">
                 <div class="comments">
-<div id="disqus_thread"></div>
+                    <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'mos6581';
         var disqus_identifier = 'http://www.mos6581.org/introducing-rinohtype';
@@ -212,39 +231,35 @@ Share this article on Twitter: <a href="http://twitter.com/share" class="twitter
      })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>                </div>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+                </div>
             </div>
         </div>
     </div>
 </div>
 </section>
-            <aside>
+
             <hr/>
-            <nav>
-            <ul class="articles_timeline">
-            </ul>
-            </nav>
-            </aside>
         </div>
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
- 
             <h4>Published</h4>
             <time pubdate="pubdate" datetime="2013-11-03T00:00:00">Nov 3, 2013</time>
             <h4>Category</h4>
-            <a class="category-link" href="/categories.html#RinohType-ref">RinohType</a> 
+            <a class="category-link" href="http://www.mos6581.org/categories.html#rinohtype-ref">RinohType</a>
             <h4>Tags</h4>
-            <ul class="list-of-tags tags-in-article"> 
-                <li><a href="/tags.html#python-ref">python
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://www.mos6581.org/tags.html#python-ref">python
                     <span>1</span>
 </a></li>
             </ul>
-<h4>Stay in Touch</h4>
-<a href="http://twitter.com/brechtmachiels" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+<h4>Contact</h4>
+    <a href="http://twitter.com/brechtmachiels" title="My twitter Profile" class="sidebar-social-links" target="_blank">
     <i class="fa fa-twitter sidebar-social-links"></i></a>
-<a href="http://github.com/brechtm" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <a href="http://github.com/brechtm" title="My github Profile" class="sidebar-social-links" target="_blank">
     <i class="fa fa-github sidebar-social-links"></i></a>
-<a href="mailto:brecht@mos6581.org" title="My email Address" class="sidebar-social-links" target="_blank">
+    <a href="mailto:brecht@mos6581.org" title="My email Address" class="sidebar-social-links" target="_blank">
     <i class="fa fa-envelope sidebar-social-links"></i></a>
         </div>
         </section>
@@ -254,6 +269,7 @@ Share this article on Twitter: <a href="http://twitter.com/share" class="twitter
                 <div class="span1"></div>
             </div>
         </div>
+        <div id="push"></div>
     </div>
 <footer>
 <div id="footer">
@@ -262,7 +278,7 @@ Share this article on Twitter: <a href="http://twitter.com/share" class="twitter
     </ul>
 </div>
 </footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
-        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
             function validateForm(query)
             {
@@ -270,31 +286,44 @@ Share this article on Twitter: <a href="http://twitter.com/share" class="twitter
             }
         </script>
 
-<script type="text/javascript">
-    var disqus_shortname = 'mos6581';
+            <script type="text/javascript">
+var disqus_shortname = 'mos6581';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+<script  language="javascript" type="text/javascript">
+function uncollapse() {
+    if (window.location.hash.match(/^#comment-\d+$/)) {
+        $('#disqus_thread').collapse('show');
+    }
+}
+</script>
+<script type="text/javascript" language="JavaScript">
+uncollapse();
+window.onhashchange=function(){
+    if (window.location.hash.match(/^#comment-\d+$/))
+        window.location.reload(true);
+}
+</script>
+<script>
+$('#disqus_thread').on('shown', function () {
+    var link = document.getElementsByClassName('accordion-toggle');
+    var old_innerHTML = link[0].innerHTML;
+    $(link[0]).fadeOut(500, function() {
+        $(this).text('Click here to hide comments').fadeIn(500);
+    });
+    $('#disqus_thread').on('hidden', function () {
+        $(link[0]).fadeOut(500, function() {
+            $(this).text(old_innerHTML).fadeIn(500);
+        });
+    })
+})
+</script>
 
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-    </script>
-        <script  language="javascript" type="text/javascript">
-            function uncollapse() {
-                var hash_str = window.location.hash;
-                if (window.location.hash.match(/^#comment-\d+$/))
-                {
-                    var hash_str = '#disqus_thread';
-                }
-                $(hash_str).collapse({
-                    toggle: true
-                    })
-            }
-        </script>
 
-        <script type="text/javascript" language="JavaScript">
-            uncollapse(); 
-        </script>
     </body>
 </html>
