@@ -7,9 +7,8 @@ Ph.D. dissertation by Brecht Machiels
 
 Download `full text </files/Brecht_Machiels__Distributed_Amplification_in_CMOS.pdf>`_.
 
-.. image:: /images/phd_cover.png
+.. figure:: /images/phd_cover.png
    :alt: Cover
-   :align: center
 
 Abstract
 ========
