@@ -14,13 +14,12 @@ TIMEZONE = 'Europe/Brussels'
 DEFAULT_LANG = 'en'
 
 PLUGIN_PATH = 'pelican-plugins'
-PLUGINS = ['sitemap', 'extract_toc', 'tipue_search']  # , 'liquid_tags.img'
+PLUGINS = ['sitemap', 'extract_toc', 'tipue_search', 'share_post']  # , 'liquid_tags.img'
 MD_EXTENSIONS = ['codehilite(css_class=highlight)', 'extra', 'headerid', 'toc']
 DIRECT_TEMPLATES = (('index', 'tags', 'categories','archives', 'search', '404'))
 
 TYPOGRIFY = True
 THEME = 'pelican-elegant'
-CUSTOM_CSS = True
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
