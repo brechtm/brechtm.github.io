@@ -14,7 +14,7 @@ TIMEZONE = 'Europe/Brussels'
 DEFAULT_LANG = 'en'
 
 PLUGIN_PATH = 'pelican-plugins'
-PLUGINS = ['sitemap', 'extract_toc', 'tipue_search', 'share_post']  # , 'liquid_tags.img'
+PLUGINS = ['sitemap', 'extract_toc', 'tipue_search', 'share_post', 'neighbors']  # , 'liquid_tags.img'
 MD_EXTENSIONS = ['codehilite(css_class=highlight)', 'extra', 'headerid', 'toc']
 DIRECT_TEMPLATES = (('index', 'tags', 'categories','archives', 'search', '404'))
 
