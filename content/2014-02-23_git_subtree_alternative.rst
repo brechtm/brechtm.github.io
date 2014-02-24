@@ -220,3 +220,10 @@ For future reference, here are some ideas for git-subrepo.
    This allows the user to easily inspect the history of subrepos separately.
 
 .. __: https://www.kernel.org/pub/software/scm/git/docs/githooks.html#_prepare_commit_msg
+
+
+Comments on `Hacker News`_ and `Reddit`_
+
+.. _Hacker News: https://news.ycombinator.com/item?id=7286485
+.. _Reddit: http://www.reddit.com/r/git/comments/1ypout/exploring_an_alternative_to_gitsubtree/
+
