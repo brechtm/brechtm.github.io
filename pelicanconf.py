@@ -82,10 +82,11 @@ LINKS = None
 GITHUB_URL = 'http://github.com/brechtm/'
 SOCIAL = (('twitter', 'http://twitter.com/brechtmachiels'),
           ('github', 'http://github.com/brechtm'),
-          ('email', 'mailto:brecht@mos6581.org'),
+          ('email', 'znvygb:oerpug@zbf6581.bet')    # ROT13 encoded
 )
 
-EMAIL = 'brecht@mos6581.org'
+ROT13EMAIL = True
+
 TWITTER_USERNAME = 'brechtmachiels'
 
 DEFAULT_PAGINATION = False
