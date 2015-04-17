@@ -13,7 +13,8 @@ TIMEZONE = 'Europe/Brussels'
 
 DEFAULT_LANG = 'en'
 
-PLUGIN_PATH = 'pelican-plugins'
+READERS = {'html': None}
+PLUGIN_PATHS = ['pelican-plugins']
 PLUGINS = ['sitemap', 'extract_toc', 'tipue_search', 'share_post', 'neighbors']  # , 'liquid_tags.img'
 MD_EXTENSIONS = ['codehilite(css_class=highlight)', 'extra', 'headerid', 'toc']
 DIRECT_TEMPLATES = (('index', 'tags', 'categories','archives', 'search', '404'))
@@ -98,9 +99,7 @@ STATIC_PATHS = [
     'images',
     'theme/images',
     'files',
-    'extra/CNAME',
-    'extra/custom.css',
-    'extra/google9ddc49a50caff71e.html'
+    'extra',
 ]
 
 EXTRA_PATH_METADATA = {
