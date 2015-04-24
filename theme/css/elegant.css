@@ -120,10 +120,6 @@ pre {
     word-break: normal;
     word-wrap: normal;
 }
-.highlight pre {
-    background-color: #fdf6e3;
-    border-radius: 3px 3px 3px 3px;
-}
 td.code .highlight pre {
     border-radius: 0 3px 3px 0;
 }
@@ -175,6 +171,7 @@ div.highlight {
 /* Article */
 article p:not(#list-of-translations):not(#post-share-links) a,
 article ol a,
+blockquote a,
 article div.article-content ul:not(.articles-timeline):not(.related-posts-list) a {
     border-bottom: thin dashed #A9A9A9;
     color: #000;

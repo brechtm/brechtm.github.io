@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Brecht Machiels" />
+        <meta name="copyright" content="Brecht Machiels" />
+
+        <meta name="twitter:creator" content="@brechtmachiels">
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="python, RinohType, " />
+
+<meta property="og:title" content="RinohType Status Update 1 "/>
+<meta property="og:url" content="http://www.mos6581.org/rinohtype_status_update_1" />
+<meta property="og:description" content="Almost 18 months have passed since I announced RinohType, so it’s about time for a little status update. Inspired by some of the comments on the last blog article, I decided to focus on reStructuredText support, as this would make RinohType much more useful to many people. The changes ..." />
+<meta property="og:site_name" content="mos6581" />
+<meta property="og:article:author" content="Brecht Machiels" />
+<meta property="og:article:published_time" content="2015-04-24T00:00:00" />
+<meta name="twitter:title" content="RinohType Status Update 1 ">
+<meta name="twitter:description" content="Almost 18 months have passed since I announced RinohType, so it’s about time for a little status update. Inspired by some of the comments on the last blog article, I decided to focus on reStructuredText support, as this would make RinohType much more useful to many people. The changes ...">
+
+        <title>RinohType Status Update 1  · mos6581
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="http://www.mos6581.org/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://www.mos6581.org/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://www.mos6581.org/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://www.mos6581.org/theme/css/custom.css" media="screen">
+        <link href="http://www.mos6581.org/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="mos6581 - Full Atom Feed" />
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', '(u'mos6581.org', u'UA-45391629-1')', 'auto');
+    ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="http://www.mos6581.org/"><span class=site-name><span style='color:black;'>mos</span><span style='color:#AA1032;'>6581</span></span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="http://www.mos6581.org">Home</a></li>
+                            <li ><a href="http://www.mos6581.org/categories.html">Categories</a></li>
+                            <li ><a href="http://www.mos6581.org/tags.html">Tags</a></li>
+                            <li ><a href="http://www.mos6581.org/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="http://www.mos6581.org/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="http://www.mos6581.org/rinohtype_status_update_1"> RinohType Status Update&nbsp;1  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc" id="">
+
+<ul class="simple">
+<li><a class="reference internal" href="#restructuredtext-and-sphinx" id="id2">reStructuredText and Sphinx</a></li>
+<li><a class="reference internal" href="#pdf-backend" id="id3"><span class="caps">PDF</span> Backend</a></li>
+<li><a class="reference internal" href="#style-system" id="id4">Style System</a><ul>
+<li><a class="reference internal" href="#selectors" id="id5">Selectors</a></li>
+<li><a class="reference internal" href="#matchers-and-style-sheets" id="id6">Matchers and Style Sheets</a></li>
+<li><a class="reference internal" href="#inheritance" id="id7">Inheritance</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#performance" id="id8">Performance</a></li>
+<li><a class="reference internal" href="#feedback" id="id9">Feedback</a></li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            
+<p>Almost 18 months have passed since I <a class="reference external" href="http://www.mos6581.org/introducing-rinohtype">announced RinohType</a>, so
+it’s about time for a little status update. Inspired by some of the comments on the last blog article, I decided to focus on <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a> support, as this would make RinohType much more useful to many people. The changes required to fully support reStructuredText also led to may other improvements in RinohType. Additionally, the stylesheet system has received some important updates. The changes are summarized below.</p>
+<p>Last year, I submitted a talk proposal to EuroPython which was unfortunately rejected. From the reviewers’ comments I understood that the proposal could not be accepted without the availability of a RinohType release. For EuroPython 2015, I submitted a new proposal, now accompanied with a <a class="reference external" href="https://pypi.python.org/pypi/RinohType/0.1.1">first RinohType release</a>. This release includes a command-line to tool to render reStructuredText files and a Sphinx builder. You are welcome to give it a spin and send me feedback. Expect to encounter many bugs, however. Please find more details in the description on PyPI.</p>
+<div class="section" id="restructuredtext-and-sphinx">
+<h2><a class="toc-backref" href="#id2">reStructuredText and Sphinx</a></h2>
+<p>RinohType now has fairly complete support for <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>. Armed with <a class="reference external" href="http://docutils.sourceforge.net/docs/user/rst/demo.txt">demo.txt</a>, I set out to interpret and render all remaining reStructuredText doctree elements: field/option lists, hyperlinks, problematic nodes (text color), compound paragraphs, sidebar, inline images, figures, citations and tables. While all reStructured directives  should now be supported, the various options that can be passed to the them might be not be.</p>
+<p>reStructuredText’s ability to nest document elements uncovered the fact that many of my document building blocks were built under much simpler assumptions. For example, a table cell can now contain any other element such as a list or even another table, where before it could only contain text. The document building blocks in general are now much more capable and should be able to handle whatever reStructuredText supports at the least. The RinohType building blocks (so-called <em>flowables</em>) now also form a proper nested document tree, which is very useful when styling the document.</p>
+<p>Table rendering code was rewritten completely to:</p>
+<ul class="simple">
+<li>accept any flowable as cell content instead of only text,</li>
+<li>better fit the styling mechanism, and</li>
+<li>be able to automatically size columns based on their content.</li>
+</ul>
+<p>A wonderful corollary of reStructuredText support is that it was fairly easy to create a Sphinx builder. I have already used it to render a small technical report for my freelance work. It does not yet support all custom reStructuredText directives added by Sphinx however, so it cannot yet render Sphinx’s documentation. Locally, I have it parsing the complete document tree, but it still fails rendering at some point, so you can expect this to work very soon. The builder is included in the release mentioned above. Instructions on how to use it can be found in the release’s package description on PyPI.</p>
+</div>
+<div class="section" id="pdf-backend">
+<h2><a class="toc-backref" href="#id3"><span class="caps">PDF</span> Backend</a></h2>
+<p>The <span class="caps">PDF</span> backend was extended to support some of the reStructuredText features; it can now output colored text and display interactive hyperlinks (but for some reason, they don’t all work in Apple Preview). Next to <span class="caps">PDF</span> images, bitmap images are now also supported when <a class="reference external" href="https://python-pillow.github.io">Pillow</a> is installed.</p>
+<p>It is now also possible to copy selected text from the resulting <span class="caps">PDF</span> and not end up with gibberish when pasting. The problem with certain <span class="caps">PDF</span> readers (Firefox’s pdf.js and Evince) has not yet been resolved, however. I am fairly certain this is due a bug in the readers, but I might try to work around it.</p>
+</div>
+<div class="section" id="style-system">
+<h2><a class="toc-backref" href="#id4">Style System</a></h2>
+<p>I also took some time to make fundamental improvements to the styling system. The new system is heavily inspired by <a class="reference external" href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets"><span class="caps">CSS</span></a>, but adds some extra functionality that <span class="caps">CSS</span> lacks. The style sheets are currently specified in Python code (see examples below). I might provide a plain text alternative (<span class="caps">YAML</span>, <span class="caps">INI</span> or perhaps even <span class="caps">CSS</span>) in the future. The following illustrates the most important features of the style system without going into details.</p>
+<div class="section" id="selectors">
+<h3><a class="toc-backref" href="#id5">Selectors</a></h3>
+<p>Very similar to <a class="reference external" href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets#Selector"><span class="caps">CSS</span> selectors</a>, elements can be matched based on their context. For example, the following matches any paragraph that is a child of a list item.</p>
+<div class="highlight"><pre><span class="n">ListItem</span> <span class="o">/</span> <span class="n">Paragraph</span>
+</pre></div>
+<p><tt class="docutils literal">ListItem</tt> and <tt class="docutils literal">Paragraph</tt> are both RinohType classes (<tt class="docutils literal">Flowable</tt> subclasses) that make up the document tree.</p>
+<p>Similar to <span class="caps">HTML</span>/<span class="caps">CSS</span>’s ‘class’ attribute, a flowable can have a ‘style’ attribute which can be checked when constructing a selector. This selects all paragraphs of style ‘title’:</p>
+<div class="highlight"><pre><span class="n">Paragraph</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="s">'title'</span><span class="p">)</span>
+</pre></div>
+<p>The <tt class="docutils literal">like</tt> method can also match arbitrary attributes of elements. This can be used to do more advanced things such as selecting the background objects on all odd rows of a table, limited to the cells not spanning multiple rows:</p>
+<div class="highlight"><pre><span class="n">TableCell</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="n">row_index</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">rowspan</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">TableCellBackground</span>
+</pre></div>
+<p><a class="reference external" href="https://docs.python.org/3.5/library/constants.html#Ellipsis">Python’s ellipsis</a> can be used to match any number of levels in the document tree. For example, the following matches any paragraph element at any level inside a table cell.</p>
+<div class="highlight"><pre><span class="n">TableCell</span> <span class="o">/</span> <span class="o">...</span> <span class="o">/</span> <span class="n">Paragraph</span>
+</pre></div>
+<p>RinohType borrows <span class="caps">CSS</span>’s concept of <a class="reference external" href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets#Specificity">specificity</a> to determine the "winning" selector when multiple selectors match a given document element.</p>
+</div>
+<div class="section" id="matchers-and-style-sheets">
+<h3><a class="toc-backref" href="#id6">Matchers and Style Sheets</a></h3>
+<p>In contrast to <span class="caps">CSS</span>, RinohType’s style system has an extra layer of indirection so that the user does not have to redefine the selectors in each style sheet. A <tt class="docutils literal">StyledMatcher</tt> is basically a dictionary that maps descriptions to selectors.</p>
+<div class="highlight"><pre><span class="n">matcher</span> <span class="o">=</span> <span class="n">StyledMatcher</span><span class="p">()</span>
+<span class="o">...</span>
+<span class="n">matcher</span><span class="p">(</span><span class="s">'emphasis'</span><span class="p">,</span> <span class="n">StyledText</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="s">'emphasis'</span><span class="p">))</span>
+<span class="n">matcher</span><span class="p">(</span><span class="s">'nested line block'</span><span class="p">,</span> <span class="n">GroupedFlowables</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="s">'line block'</span><span class="p">)</span>
+                             <span class="o">/</span> <span class="n">GroupedFlowables</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="s">'line block'</span><span class="p">))</span>
+<span class="o">...</span>
+</pre></div>
+<p>A single <tt class="docutils literal">StyledMatcher</tt> can serve multiple <tt class="docutils literal">StyleSheet</tt>s:</p>
+<div class="highlight"><pre><span class="n">styles</span> <span class="o">=</span> <span class="n">StyleSheet</span><span class="p">(</span><span class="s">'IEEE'</span><span class="p">,</span> <span class="n">matcher</span><span class="o">=</span><span class="n">matcher</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="n">styles</span><span class="p">(</span><span class="s">'emphasis'</span><span class="p">,</span> <span class="n">font_slant</span><span class="o">=</span><span class="n">ITALIC</span><span class="p">)</span>
+<span class="n">styles</span><span class="p">(</span><span class="s">'nested line block'</span><span class="p">,</span> <span class="n">margin_left</span><span class="o">=</span><span class="mf">0.5</span><span class="o">*</span><span class="n">CM</span><span class="p">)</span>
+<span class="o">...</span>
+</pre></div>
+<p>One feature sorely missing from <span class="caps">CSS</span> is variables. Here’s an example of how variables can be specified and used in RinohType style sheets:</p>
+<div class="highlight"><pre><span class="n">styles</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s">'ieee_family'</span><span class="p">]</span> <span class="o">=</span> <span class="n">TypeFamily</span><span class="p">(</span><span class="n">serif</span><span class="o">=</span><span class="n">times</span><span class="p">,</span>
+                                             <span class="n">sans</span><span class="o">=</span><span class="n">helvetica</span><span class="p">,</span>
+                                             <span class="n">mono</span><span class="o">=</span><span class="n">courier</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="n">styles</span><span class="p">(</span><span class="s">'monospaced'</span><span class="p">,</span>
+       <span class="n">typeface</span><span class="o">=</span><span class="n">Var</span><span class="p">(</span><span class="s">'ieee_family'</span><span class="p">)</span><span class="o">.</span><span class="n">mono</span><span class="p">,</span>
+       <span class="n">font_size</span><span class="o">=</span><span class="mi">9</span><span class="o">*</span><span class="n">PT</span><span class="p">,</span>
+       <span class="n">hyphenate</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+       <span class="n">ligatures</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="o">...</span>
+</pre></div>
+<p>Another stylesheet can inherit from this one and easily replace all fonts in the document by overriding the <tt class="docutils literal">ieee_family</tt> variable.</p>
+<p>I doubt there will be a need to have many different matchers. The end user will likely never have to deal with them as most documents can use the default matcher. When custom flowables are used in a document, the default base matcher can be easily extended to style these.</p>
+</div>
+<div class="section" id="inheritance">
+<h3><a class="toc-backref" href="#id7">Inheritance</a></h3>
+<p>Similar to <span class="caps">CSS</span>’s <a class="reference external" href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets#Inheritance">inheritance</a>, <strong>text elements</strong> inherit properties from their parent. So for the example style sheet above, text with style <tt class="docutils literal">emphasis</tt> inherits the properties (such as <tt class="docutils literal">typeface</tt>, <tt class="docutils literal">font_weight</tt> and <tt class="docutils literal">font_size</tt>) from the paragraph it is a child of, but overrides the <tt class="docutils literal">font_slant</tt> property.</p>
+<p>In addition, RinohType allows specifying a base style for each style. This avoids duplication of style information and the maintenance difficulties resulting from it.</p>
+<div class="highlight"><pre><span class="n">styles</span><span class="p">(</span><span class="s">'heading level 1'</span><span class="p">,</span>
+       <span class="n">typeface</span><span class="o">=</span><span class="n">Var</span><span class="p">(</span><span class="s">'ieee_family'</span><span class="p">)</span><span class="o">.</span><span class="n">serif</span><span class="p">,</span>
+       <span class="n">font_weight</span><span class="o">=</span><span class="n">REGULAR</span><span class="p">,</span>
+       <span class="n">font_size</span><span class="o">=</span><span class="mi">10</span><span class="o">*</span><span class="n">PT</span><span class="p">,</span>
+       <span class="n">small_caps</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+       <span class="n">justify</span><span class="o">=</span><span class="n">CENTER</span><span class="p">,</span>
+       <span class="n">line_spacing</span><span class="o">=</span><span class="n">FixedSpacing</span><span class="p">(</span><span class="mi">12</span><span class="o">*</span><span class="n">PT</span><span class="p">),</span>
+       <span class="n">space_above</span><span class="o">=</span><span class="mi">18</span><span class="o">*</span><span class="n">PT</span><span class="p">,</span>
+       <span class="n">space_below</span><span class="o">=</span><span class="mi">6</span><span class="o">*</span><span class="n">PT</span><span class="p">,</span>
+       <span class="n">number_format</span><span class="o">=</span><span class="n">ROMAN_UC</span><span class="p">,</span>
+       <span class="n">label_suffix</span><span class="o">=</span><span class="s">'.'</span> <span class="o">+</span> <span class="n">FixedWidthSpace</span><span class="p">())</span>
+
+<span class="n">styles</span><span class="p">(</span><span class="s">'unnumbered heading level 1'</span><span class="p">,</span>
+       <span class="n">base</span><span class="o">=</span><span class="s">'heading level 1'</span><span class="p">,</span>
+       <span class="n">number_format</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="performance">
+<h2><a class="toc-backref" href="#id8">Performance</a></h2>
+<p>Shortly after posting the first blog article on RinohType, I’ve focused on speeding up document processing. Appareantly I managed to <a class="reference external" href="https://twitter.com/brechtmachiels/status/401322293928161280">almost halve rendering time</a> by refactoring the code and adding more memoization.</p>
+<p>The next step was to speed up the slowest code by compiling to a fast C module using <strong>Cython</strong> and static type declarations. Unfortunately, there was no single part of the code where most of the time was spent, as these were repeatedly removed during refactoring for speed earlier. And even when cythonizing some parts, they didn’t result in a significant performance boost. I believe this is due to the fact that there’s not much number crunching going on as in the typical applications benefitting from Cython. In RinohType, I suspect container (dict, list) access operations to be the most common.</p>
+<p>Next stop: <strong>PyPy</strong>. Hoping for a no-effort instant speedup, instead both <a class="reference external" href="https://mail.python.org/pipermail/pypy-dev/2014-February/012182.html">PyPy3</a> and <a class="reference external" href="https://mail.python.org/pipermail/pypy-dev/2014-March/012284.html">PyPy2</a> were much <strong>slower</strong> than CPython! As for Cython, I suppose this could be attributed to the fact that RinohType is not the typical use case for PyPy.</p>
+<p>But the situation isn’t dramatic. RinohType is plenty fast on modern systems. The rendering time shouldn’t be a problem unless you’re rendering hundreds of pages. Once RinohType is more feature-complete and less buggy, I might revisit performance tuning.</p>
+</div>
+<div class="section" id="feedback">
+<h2><a class="toc-backref" href="#id9">Feedback</a></h2>
+<p>For general discussions on RinohType, you are welcome to join the <a class="reference external" href="https://www.freelists.org/list/rinohtype">mailing list</a> (<a class="reference external" href="http://dir.gmane.org/gmane.comp.type-setting.rinohtype"><span class="caps">GMANE</span> archive</a>). Please report bugs using the <a class="reference external" href="https://github.com/brechtm/rinohtype/issues">GitHub issue tracker</a>.</p>
+<!-- Comments on `Hacker News`_ and `Reddit`_ -->
+</div>
+
+            <section>
+    <p id="post-share-links">
+    Share on:
+    <a href="http://twitter.com/home?status=RinohType%20Status%20Update%C2%A01%20http%3A//www.mos6581.org/rinohtype_status_update_1" target="_blank" title="Share on Twitter">Twitter</a>
+    ❄
+    <a href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=http%3A//www.mos6581.org/rinohtype_status_update_1" target="_blank" title="Share on Facebook">Facebook</a>
+    ❄
+    <a href="https://plus.google.com/share?url=http%3A//www.mos6581.org/rinohtype_status_update_1" target="_blank" title="Share on Google Plus">Google+</a>
+    ❄
+    <a href="mailto:?subject=RinohType%20Status%20Update%C2%A01&amp;body=http%3A//www.mos6581.org/rinohtype_status_update_1" target="_blank" title="Share via Email">Email</a>
+    </p>
+</section>
+
+            <section>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="http://www.mos6581.org/rinohtype_status_update_1#disqus_thread">
+                Comments
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+                    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'mos6581';
+        var disqus_identifier = 'http://www.mos6581.org/rinohtype_status_update_1';
+    var disqus_url = 'http://www.mos6581.org/rinohtype_status_update_1';
+
+    (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="http://www.mos6581.org/git_subtree_alternative" title="Previous: Exploring an alternative to git-subtree">Exploring an alternative to git-subtree</a></li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2015-04-24T00:00:00">Apr 24, 2015</time>
+            <h4>Category</h4>
+            <a class="category-link" href="http://www.mos6581.org/categories.html#rinohtype-ref">RinohType</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="http://www.mos6581.org/tags.html#python-ref">python
+                    <span>2</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="http://twitter.com/brechtmachiels" title="My twitter Profile" class="sidebar-social-links" target="_blank"
+    >
+    <i class="fa fa-twitter sidebar-social-links"></i></a>
+    <a href="http://github.com/brechtm" title="My github Profile" class="sidebar-social-links" target="_blank"
+    >
+    <i class="fa fa-github sidebar-social-links"></i></a>
+    <a href="znvygb:oerpug@zbf6581.bet" title="My email Address" class="sidebar-social-links" target="_blank"
+         onclick="this.href=this.href.replace(/[a-zA-Z]/g, function(c){return String.fromCharCode((c&lt;=&quot;Z&quot;?90:122)&gt;=(c=c.charCodeAt(0)+13)?c:c-26);})"
+    >
+    <i class="fa fa-envelope sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+            <script type="text/javascript">
+var disqus_shortname = 'mos6581';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+<script  language="javascript" type="text/javascript">
+function uncollapse() {
+    if (window.location.hash.match(/^#comment-\d+$/)) {
+        $('#disqus_thread').collapse('show');
+    }
+}
+</script>
+<script type="text/javascript" language="JavaScript">
+uncollapse();
+window.onhashchange=function(){
+    if (window.location.hash.match(/^#comment-\d+$/))
+        window.location.reload(true);
+}
+</script>
+<script>
+$('#disqus_thread').on('shown', function () {
+    var link = document.getElementsByClassName('accordion-toggle');
+    var old_innerHTML = link[0].innerHTML;
+    $(link[0]).fadeOut(500, function() {
+        $(this).text('Click here to hide comments').fadeIn(500);
+    });
+    $('#disqus_thread').on('hidden', function () {
+        $(link[0]).fadeOut(500, function() {
+            $(this).text(old_innerHTML).fadeIn(500);
+        });
+    })
+})
+</script>
+
+
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>
