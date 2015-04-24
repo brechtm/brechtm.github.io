@@ -181,9 +181,9 @@ For general discussions on RinohType, you are welcome to join the `mailing list`
 .. _GitHub issue tracker: https://github.com/brechtm/rinohtype/issues
 
 
-.. Comments on `Hacker News`_ and `Reddit`_
+Comments on `Hacker News`_ and `Reddit`_
 
-.. _Hacker News: https://news.ycombinator.com/item?id=
-.. _Reddit: http://www.reddit.com/r/
+.. _Hacker News: https://news.ycombinator.com/item?id=9433415
+.. _Reddit: http://www.reddit.com/r/Python/comments/33potn/rinohtype_the_python_document_processor_status/
 
 .. _reStructuredText: http://docutils.sourceforge.net/rst.html
