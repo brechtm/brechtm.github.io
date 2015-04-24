@@ -104,7 +104,7 @@ it’s about time for a little status update. Inspired by some of the comments o
 &lt;div class="section" id="feedback"&gt;
 &lt;h2&gt;&lt;a class="toc-backref" href="#id9"&gt;Feedback&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;For general discussions on RinohType, you are welcome to join the &lt;a class="reference external" href="https://www.freelists.org/list/rinohtype"&gt;mailing list&lt;/a&gt; (&lt;a class="reference external" href="http://dir.gmane.org/gmane.comp.type-setting.rinohtype"&gt;&lt;span class="caps"&gt;GMANE&lt;/span&gt; archive&lt;/a&gt;). Please report bugs using the &lt;a class="reference external" href="https://github.com/brechtm/rinohtype/issues"&gt;GitHub issue tracker&lt;/a&gt;.&lt;/p&gt;
-&lt;!-- Comments on `Hacker News`_ and `Reddit`_ --&gt;
+&lt;p&gt;Comments on &lt;a class="reference external" href="https://news.ycombinator.com/item?id=9433415"&gt;Hacker News&lt;/a&gt; and &lt;a class="reference external" href="http://www.reddit.com/r/Python/comments/33potn/rinohtype_the_python_document_processor_status/"&gt;Reddit&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </summary><category term="python"></category></entry><entry><title>Exploring an alternative to git-subtree</title><link href="http://www.mos6581.org/git_subtree_alternative" rel="alternate"></link><updated>2014-02-23T00:00:00+01:00</updated><author><name>Brecht Machiels</name></author><id>tag:www.mos6581.org,2014-02-23:git_subtree_alternative</id><summary type="html">
 &lt;p&gt;When you want to include external code in your git repository, for example a
