@@ -1,5 +1,5 @@
-RinohType Status Update 1
-#########################
+RinohType update: reStructuredText and style sheets
+###################################################
 
 :tags: python
 :category: RinohType
@@ -7,10 +7,12 @@ RinohType Status Update 1
 .. contents::
 
 
-Almost 18 months have passed since I `announced RinohType <{filename}2013-11-03_introducing-rinohtype.rst>`_, so
-it's about time for a little status update. Inspired by some of the comments on the last blog article, I decided to focus on `reStructuredText`_ support, as this would make RinohType much more useful to many people. The changes required to fully support reStructuredText also led to may other improvements in RinohType. Additionally, the stylesheet system has received some important updates. The changes are summarized below.
+Almost 18 months have passed since I `announced RinohType`_, so it's about time for a little status update. Inspired by some of the comments on the last blog article, I decided to focus on `reStructuredText`_ support, as this would make RinohType much more useful to many people. The changes required to fully support reStructuredText also led to may other improvements in RinohType. Additionally, the style sheet system has received some important updates. The changes are summarized below.
 
-Last year, I submitted a talk proposal to EuroPython which was unfortunately rejected. From the reviewers' comments I understood that the proposal could not be accepted without the availability of a RinohType release. For EuroPython 2015, I submitted a new proposal, now accompanied with a `first RinohType release <https://pypi.python.org/pypi/RinohType/0.1.1>`_. This release includes a command-line to tool to render reStructuredText files and a Sphinx builder. You are welcome to give it a spin and send me feedback. Expect to encounter many bugs, however. Please find more details in the description on PyPI.
+Last year, I submitted a talk proposal to EuroPython which was unfortunately rejected. From the reviewers' comments I understood that the proposal could not be accepted without the availability of a RinohType release. For EuroPython 2015, I submitted a new proposal, now accompanied with a `first RinohType release`_. This release includes a command-line to tool to render reStructuredText files and a Sphinx builder. You are welcome to give it a spin and send me feedback. Expect to encounter many bugs, however. Please find more details in the description on PyPI.
+
+.. _announced RinohType: {filename}2013-11-03_introducing-rinohtype.rst
+.. _first RinohType release: https://pypi.python.org/pypi/RinohType/0.1.1
 
 
 reStructuredText and Sphinx
@@ -72,7 +74,7 @@ The ``like`` method can also match arbitrary attributes of elements. This can be
 
     TableCell.like(row_index=slice(0, None, 2), rowspan=1) / TableCellBackground
     
-`Python's ellipsis <https://docs.python.org/3.5/library/constants.html#Ellipsis>`_ can be used to match any number of levels in the document tree. For example, the following matches any paragraph element at any level inside a table cell.
+`Python's ellipsis`_ can be used to match any number of levels in the document tree. For example, the following matches any paragraph element at any level inside a table cell.
 
 .. code-block:: python
 
@@ -81,6 +83,7 @@ The ``like`` method can also match arbitrary attributes of elements. This can be
 RinohType borrows CSS's concept of `specificity`_ to determine the "winning" selector when multiple selectors match a given document element.
 
 .. _CSS selectors: https://en.wikipedia.org/wiki/Cascading_Style_Sheets#Selector
+.. _Python's ellipsis: https://docs.python.org/3.5/library/constants.html#Ellipsis
 .. _specificity: https://en.wikipedia.org/wiki/Cascading_Style_Sheets#Specificity
 
 
@@ -159,7 +162,7 @@ In addition, RinohType allows specifying a base style for each style. This avoid
 Performance
 ===========
 
-Shortly after posting the first blog article on RinohType, I've focused on speeding up document processing. Appareantly I managed to `almost halve rendering time <https://twitter.com/brechtmachiels/status/401322293928161280>`_ by refactoring the code and adding more memoization.
+Shortly after posting the first blog article on RinohType, I've focused on speeding up document processing. Appareantly I managed to `almost halve rendering time`_ by refactoring the code and adding more memoization.
 
 The next step was to speed up the slowest code by compiling to a fast C module using **Cython** and static type declarations. Unfortunately, there was no single part of the code where most of the time was spent, as these were repeatedly removed during refactoring for speed earlier. And even when cythonizing some parts, they didn't result in a significant performance boost. I believe this is due to the fact that there's not much number crunching going on as in the typical applications benefitting from Cython. In RinohType, I suspect container (dict, list) access operations to be the most common.
 
@@ -167,6 +170,7 @@ Next stop: **PyPy**. Hoping for a no-effort instant speedup, instead both `PyPy3
 
 But the situation isn't dramatic. RinohType is plenty fast on modern systems. The rendering time shouldn't be a problem unless you're rendering hundreds of pages. Once RinohType is more feature-complete and less buggy, I might revisit performance tuning.
 
+.. _almost halve rendering time: https://twitter.com/brechtmachiels/status/401322293928161280
 .. _PyPy3: https://mail.python.org/pipermail/pypy-dev/2014-February/012182.html
 .. _PyPy2: https://mail.python.org/pipermail/pypy-dev/2014-March/012284.html
 
