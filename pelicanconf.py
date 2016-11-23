@@ -56,7 +56,7 @@ LANDING_PAGE_ABOUT = {
 }
 
 PROJECTS = [
-    {'name': 'RinohType',
+    {'name': 'rinohtype',
      'url': 'http://github.com/brechtm/rinohtype',
      'description': 'Elegant document preparation system written in pure Python'},
     {'name': 'citeproc-py',
