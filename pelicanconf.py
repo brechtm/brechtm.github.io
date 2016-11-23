@@ -48,8 +48,7 @@ LANDING_PAGE_ABOUT = {
 <!-- p><script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
 <script type="IN/MemberProfile" data-id="http://www.linkedin.com/pub/brecht-machiels/4/444/581" data-format="hover" data-text="Brecht Machiels" data-related="false"></script></p -->
 
-<p><a href="https://twitter.com/brechtmachiels" class="twitter-follow-button" data-show-count="true">Follow @brechtmachiels</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<p><a href="https://twitter.com/brezhtnev" class="twitter-follow-button" data-show-count="false">Follow @brezhtnev</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 <iframe src="http://ghbtns.com/github-btn.html?user=brechtm&type=follow&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe></p>
 
 <!-- p><a href='https://www.ohloh.net/accounts/61830?ref=Tiny' target='_blank'>
@@ -81,7 +80,7 @@ LINKS = None
 
 # Social widget
 GITHUB_URL = 'http://github.com/brechtm/'
-SOCIAL = (('twitter', 'http://twitter.com/brechtmachiels'),
+SOCIAL = (('twitter', 'http://twitter.com/brezhtnev'),
           ('github', 'http://github.com/brechtm'),
           ('email', 'znvygb:oerpug@zbf6581.bet')    # ROT13 encoded
 )
