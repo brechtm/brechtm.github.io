@@ -1,0 +1,49 @@
+rinohtype 0.3.0 released
+########################
+
+:tags: python
+:category: rinohtype
+
+.. contents::
+
+
+I am pleased to announce the release of rinohtype 0.3.0. It brings many new features and bugfixes since 0.2.1. Below, you'll find an overview of the highlights of this release. For a full list of changes, see the `change log`_.
+
+.. _change log: http://www.mos6581.org/rinohtype/changelog.html#release-0-3-0-2016-11-23²
+
+
+Highlights
+==========
+
+The major new feature in 0.3.0 is the ability to configure a document template using an INI file. Along with style sheet files (also in INI format), this makes it very easy to style your document. Read more about it in the Quickstart_ guide.
+
+.. _Quickstart: http://www.mos6581.org/rinohtype/quickstart.html#configuring-a-template
+
+Other highlights of the 0.3.0 release are:
+
+* a more mature `Sphinx builder`_; no more need for a bulky LaTeX installation to produce PDFs
+* a CommonMark frontend based on recommonmark_
+* the `command line rendering tool`_ ``rinoh`` now also renders CommonMark files and takes additional options
+* the documentation_ now includes a list of supported attributes for each element style to be used as a reference when editing style sheets
+* basic support for localization of section titles and other strings
+* make use of a fallback typeface when a glyph is not present in a font
+
+.. _Sphinx builder: http://www.mos6581.org/rinohtype/quickstart.html#sphinx-builder
+.. _command line rendering tool: http://www.mos6581.org/rinohtype/rinoh.html
+.. _recommonmark: https://github.com/rtfd/recommonmark
+.. _documentation: http://www.mos6581.org/rinohtype
+
+Feedback
+========
+
+For general discussions on rinohtype, you are welcome to join the `mailing list`_ (`GMANE archive`_). We also have a `Gitter chat room`_. Please report bugs using the `GitHub issue tracker`_.
+
+.. _mailing list: https://www.freelists.org/list/rinohtype
+.. _GMANE archive: http://dir.gmane.org/gmane.comp.type-setting.rinohtype
+.. _Gitter chat room: https://gitter.im/brechtm/rinohtype
+.. _GitHub issue tracker: https://github.com/brechtm/rinohtype/issues
+
+.. Comments on `Hacker News`_ and `Reddit`_
+
+.. _Hacker News: https://news.ycombinator.com/item?id=
+.. _Reddit: http://www.reddit.com/r/Python/comments/
