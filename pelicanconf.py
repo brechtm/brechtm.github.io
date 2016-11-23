@@ -49,7 +49,7 @@ LANDING_PAGE_ABOUT = {
 <script type="IN/MemberProfile" data-id="http://www.linkedin.com/pub/brecht-machiels/4/444/581" data-format="hover" data-text="Brecht Machiels" data-related="false"></script></p -->
 
 <p><a href="https://twitter.com/brezhtnev" class="twitter-follow-button" data-show-count="false">Follow @brezhtnev</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-<iframe src="http://ghbtns.com/github-btn.html?user=brechtm&type=follow&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe></p>
+<iframe src="http://ghbtns.com/github-btn.html?user=brechtm&type=follow&count=false" allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe></p>
 
 <!-- p><a href='https://www.ohloh.net/accounts/61830?ref=Tiny' target='_blank'>
 <img alt='Ohloh profile for Brecht Machiels' border='0' height='15' src='https://www.ohloh.net/accounts/61830/widgets/account_tiny.gif' width='80' /></a></p -->""",
