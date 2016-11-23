@@ -3,7 +3,7 @@ Introducing RinohType
 
 :subtitle: the Python document processor
 :tags: python
-:category: RinohType
+:category: rinohtype
 
 .. contents::
 

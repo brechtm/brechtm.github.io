@@ -2,7 +2,7 @@ RinohType update: reStructuredText and style sheets
 ###################################################
 
 :tags: python
-:category: RinohType
+:category: rinohtype
 
 .. contents::
 
