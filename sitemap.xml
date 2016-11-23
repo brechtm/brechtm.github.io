@@ -5,49 +5,56 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.mos6581.org/</loc>
-<lastmod>2015-07-25T17:46:57-00:00</lastmod>
+<lastmod>2016-11-23T19:01:28-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.mos6581.org/archives.html</loc>
-<lastmod>2015-07-25T17:46:57-00:00</lastmod>
+<lastmod>2016-11-23T19:01:28-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.mos6581.org/tags.html</loc>
-<lastmod>2015-07-25T17:46:57-00:00</lastmod>
+<lastmod>2016-11-23T19:01:28-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.mos6581.org/categories.html</loc>
-<lastmod>2015-07-25T17:46:57-00:00</lastmod>
+<lastmod>2016-11-23T19:01:28-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
+<loc>http://www.mos6581.org/rinohtype_0.3.0</loc>
+<lastmod>2016-11-23T00:00:00+01:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>http://www.mos6581.org/rinohtype_status_update_1</loc>
-<lastmod>2015-04-24T00:00:00-00:00</lastmod>
+<lastmod>2015-04-24T00:00:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.mos6581.org/git_subtree_alternative</loc>
-<lastmod>2014-02-23T00:00:00-00:00</lastmod>
+<lastmod>2014-02-23T00:00:00+01:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.mos6581.org/introducing-rinohtype</loc>
-<lastmod>2013-11-03T00:00:00-00:00</lastmod>
+<lastmod>2013-11-03T00:00:00+01:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>

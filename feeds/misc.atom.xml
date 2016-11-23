@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>mos6581</title><link href="http://www.mos6581.org/" rel="alternate"></link><link href="http://www.mos6581.org/feeds/misc.atom.xml" rel="self"></link><id>http://www.mos6581.org/</id><updated>2014-02-23T00:00:00+01:00</updated><entry><title>Exploring an alternative to git-subtree</title><link href="http://www.mos6581.org/git_subtree_alternative" rel="alternate"></link><updated>2014-02-23T00:00:00+01:00</updated><author><name>Brecht Machiels</name></author><id>tag:www.mos6581.org,2014-02-23:git_subtree_alternative</id><summary type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>mos6581</title><link href="http://www.mos6581.org/" rel="alternate"></link><link href="http://www.mos6581.org/feeds/misc.atom.xml" rel="self"></link><id>http://www.mos6581.org/</id><updated>2014-02-23T00:00:00+01:00</updated><entry><title>Exploring an alternative to git-subtree</title><link href="http://www.mos6581.org/git_subtree_alternative" rel="alternate"></link><published>2014-02-23T00:00:00+01:00</published><updated>2014-02-23T00:00:00+01:00</updated><author><name>Brecht Machiels</name></author><id>tag:www.mos6581.org,2014-02-23:git_subtree_alternative</id><summary type="html">
 &lt;p&gt;When you want to include external code in your git repository, for example a
 third-party library or code shared with another team, there are two popular
 options: git-submodule and git-subtree. Unfortunately both suffer from
 some problems and this led me to start thinking about an alternative way to
 handle external repositories.&lt;/p&gt;
 &lt;p&gt;I will first summarize how git-submodule and git-subtree work and discuss their
-drawbacks. I will then introduce an alternative to these, "git-subrepo" and
+drawbacks. I will then introduce an alternative to these, “git-subrepo” and
 present a (partial) proof-of-concept implementation. In the following, we assume
 a single submodule/subtree/subrepo.&lt;/p&gt;
 &lt;div class="section" id="git-submodule"&gt;
@@ -73,7 +73,7 @@ the library remote. Let’s illustrate this with a figure.&lt;/p&gt;
 &lt;p&gt;The &lt;em&gt;master&lt;/em&gt; branch (left) holds the commits of the main project and the &lt;em&gt;library&lt;/em&gt;
 branch (right) holds the commits of the library (shown in red). Let’s refer to
 the latter as the &lt;em&gt;subrepo branch&lt;/em&gt; and &lt;em&gt;subrepo commits&lt;/em&gt; for lack of better
-terms. The "logical commits" C and E contain no changes to the library; only a
+terms. The “logical commits” C and E contain no changes to the library; only a
 single commit is created. Commits A, B and D do make changes to the library, so
 two actual commits are created for each logical commit.&lt;/p&gt;
 &lt;p&gt;Commit A is the commit that introduces the subdirectory where the library

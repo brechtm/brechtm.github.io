@@ -11,14 +11,14 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="python, RinohType, " />
+<meta name="keywords" content="python, rinohtype, " />
 
 <meta property="og:title" content="Introducing RinohType  - the Python document processor "/>
 <meta property="og:url" content="http://www.mos6581.org/introducing-rinohtype" />
 <meta property="og:description" content="I originally planned to release RinohType into wild only after I had finished a full review, refactoring and documenting of the code. I also wanted to write some API documentation and a small tutorial, all in the spirit of making a good first impression. Turns out all this takes a ..." />
 <meta property="og:site_name" content="mos6581" />
 <meta property="og:article:author" content="Brecht Machiels" />
-<meta property="og:article:published_time" content="2013-11-03T00:00:00" />
+<meta property="og:article:published_time" content="2013-11-03T00:00:00+01:00" />
 <meta name="twitter:title" content="Introducing RinohType  - the Python document processor ">
 <meta name="twitter:description" content="I originally planned to release RinohType into wild only after I had finished a full review, refactoring and documenting of the code. I also wanted to write some API documentation and a small tutorial, all in the spirit of making a good first impression. Turns out all this takes a ...">
 
@@ -150,7 +150,7 @@
 <p><strong><span class="caps">EDIT</span></strong> Some <span class="caps">PDF</span> viewers (Firefox’s pdf.js, Evince, ePDFViewer) seem to have a problem with the <span class="caps">CFF</span> OpenType fonts embedded in the sample <span class="caps">PDF</span> files below. I still need to determine if this is a bug in these viewers or in RinohType (see <a class="reference external" href="https://github.com/brechtm/rinohtype/issues/2">issue 2</a>).</p>
 <p>After abandoning the idea to use Python source files as the input format, I opted to go with <span class="caps">XML</span>, since it’s a very common format and, more importantly, allows for validation using <span class="caps">XML</span> schemas. The <a class="reference external" href="https://github.com/brechtm/rinohtype/tree/master/examples/rfic2009"><span class="caps">RFIC</span> example</a> in the RinohType repository makes use of a custom <span class="caps">XML</span> input format, as defined in <tt class="docutils literal">rfic.rnc</tt> (<a class="reference external" href="http://relaxng.org/compact-tutorial-20030326.html"><span class="caps">RELAX</span> <span class="caps">NG</span> Compact</a>). This example shows off most of RinoType’s capabilities. Download the <a class="reference external" href="/files/intro_template.pdf">generated <span class="caps">PDF</span></a> to see the output.</p>
 <p>Guided by the <span class="caps">RFIC</span> example, it should be fairly straightforward (but still a lot of work) to write a DocBook frontend for RinohType. <span class="caps">XML</span> is also a great intermediate format, useful when to-<span class="caps">XML</span> converters for other input formats are available.</p>
-<p><span class="caps">XML</span> is unfortunately not the best format for hand editing. One of the advantages of TeX source files is that they are easy to write and read (the content parts anyway). Luckily, Python’s "native"
+<p><span class="caps">XML</span> is unfortunately not the best format for hand editing. One of the advantages of TeX source files is that they are easy to write and read (the content parts anyway). Luckily, Python’s “native”
 <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a> is a great markup syntax that is easy to write and read. Additionally, it is extensible, which makes it pretty much the perfect input format for RinohType (I haven’t thought about how to verify rST input yet, though). The <a class="reference external" href="https://github.com/brechtm/rinohtype/tree/master/examples/restructuredtext">rST example</a> attempts to typeset the <a class="reference external" href="http://docutils.sourceforge.net/docs/user/rst/quickstart.html">ReStructuredText Primer</a>. Here is the <a class="reference external" href="/files/intro_rst.pdf">output</a>. The rST parser contained in <tt class="docutils literal">rst.py</tt> will eventually be moved into the core of RinohType as a frontend.</p>
 </div>
 <div class="section" id="evaluation">
@@ -251,17 +251,17 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2013-11-03T00:00:00">Nov 3, 2013</time>
+            <time pubdate="pubdate" datetime="2013-11-03T00:00:00+01:00">Nov 3, 2013</time>
             <h4>Category</h4>
-            <a class="category-link" href="http://www.mos6581.org/categories.html#rinohtype-ref">RinohType</a>
+            <a class="category-link" href="http://www.mos6581.org/categories.html#rinohtype-ref">rinohtype</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="http://www.mos6581.org/tags.html#python-ref">python
-                    <span>2</span>
+                    <span>3</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
-    <a href="http://twitter.com/brechtmachiels" title="My twitter Profile" class="sidebar-social-links" target="_blank"
+    <a href="http://twitter.com/brezhtnev" title="My twitter Profile" class="sidebar-social-links" target="_blank"
     >
     <i class="fa fa-twitter sidebar-social-links"></i></a>
     <a href="http://github.com/brechtm" title="My github Profile" class="sidebar-social-links" target="_blank"

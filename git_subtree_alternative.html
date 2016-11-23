@@ -18,7 +18,7 @@
 <meta property="og:description" content="When you want to include external code in your git repository, for example a third-party library or code shared with another team, there are two popular options: git-submodule and git-subtree. Unfortunately both suffer from some problems and this led me to start thinking about an alternative way to handle external ..." />
 <meta property="og:site_name" content="mos6581" />
 <meta property="og:article:author" content="Brecht Machiels" />
-<meta property="og:article:published_time" content="2014-02-23T00:00:00" />
+<meta property="og:article:published_time" content="2014-02-23T00:00:00+01:00" />
 <meta name="twitter:title" content="Exploring an alternative to git-subtree ">
 <meta name="twitter:description" content="When you want to include external code in your git repository, for example a third-party library or code shared with another team, there are two popular options: git-submodule and git-subtree. Unfortunately both suffer from some problems and this led me to start thinking about an alternative way to handle external ...">
 
@@ -103,7 +103,7 @@ options: git-submodule and git-subtree. Unfortunately both suffer from
 some problems and this led me to start thinking about an alternative way to
 handle external repositories.</p>
 <p>I will first summarize how git-submodule and git-subtree work and discuss their
-drawbacks. I will then introduce an alternative to these, "git-subrepo" and
+drawbacks. I will then introduce an alternative to these, “git-subrepo” and
 present a (partial) proof-of-concept implementation. In the following, we assume
 a single submodule/subtree/subrepo.</p>
 <div class="section" id="git-submodule">
@@ -170,7 +170,7 @@ the library remote. Let’s illustrate this with a figure.</p>
 <p>The <em>master</em> branch (left) holds the commits of the main project and the <em>library</em>
 branch (right) holds the commits of the library (shown in red). Let’s refer to
 the latter as the <em>subrepo branch</em> and <em>subrepo commits</em> for lack of better
-terms. The "logical commits" C and E contain no changes to the library; only a
+terms. The “logical commits” C and E contain no changes to the library; only a
 single commit is created. Commits A, B and D do make changes to the library, so
 two actual commits are created for each logical commit.</p>
 <p>Commit A is the commit that introduces the subdirectory where the library
@@ -328,7 +328,7 @@ subrepo/&lt;subrepo name&gt;/&lt;HEAD branch name&gt;
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2014-02-23T00:00:00">Feb 23, 2014</time>
+            <time pubdate="pubdate" datetime="2014-02-23T00:00:00+01:00">Feb 23, 2014</time>
             <h4>Category</h4>
             <a class="category-link" href="http://www.mos6581.org/categories.html#misc-ref">misc</a>
             <h4>Tags</h4>
@@ -338,7 +338,7 @@ subrepo/&lt;subrepo name&gt;/&lt;HEAD branch name&gt;
 </a></li>
             </ul>
 <h4>Contact</h4>
-    <a href="http://twitter.com/brechtmachiels" title="My twitter Profile" class="sidebar-social-links" target="_blank"
+    <a href="http://twitter.com/brezhtnev" title="My twitter Profile" class="sidebar-social-links" target="_blank"
     >
     <i class="fa fa-twitter sidebar-social-links"></i></a>
     <a href="http://github.com/brechtm" title="My github Profile" class="sidebar-social-links" target="_blank"

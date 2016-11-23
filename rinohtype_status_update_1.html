@@ -11,14 +11,14 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="python, RinohType, " />
+<meta name="keywords" content="python, rinohtype, " />
 
 <meta property="og:title" content="RinohType update: reStructuredText and style sheets "/>
 <meta property="og:url" content="http://www.mos6581.org/rinohtype_status_update_1" />
 <meta property="og:description" content="Almost 18 months have passed since I announced RinohType, so it’s about time for a little status update. Inspired by some of the comments on the last blog article, I decided to focus on reStructuredText support, as this would make RinohType much more useful to many people. The changes ..." />
 <meta property="og:site_name" content="mos6581" />
 <meta property="og:article:author" content="Brecht Machiels" />
-<meta property="og:article:published_time" content="2015-04-24T00:00:00" />
+<meta property="og:article:published_time" content="2015-04-24T00:00:00+02:00" />
 <meta name="twitter:title" content="RinohType update: reStructuredText and style sheets ">
 <meta name="twitter:description" content="Almost 18 months have passed since I announced RinohType, so it’s about time for a little status update. Inspired by some of the comments on the last blog article, I decided to focus on reStructuredText support, as this would make RinohType much more useful to many people. The changes ...">
 
@@ -124,44 +124,44 @@
 <div class="section" id="selectors">
 <h3><a class="toc-backref" href="#id5">Selectors</a></h3>
 <p>Very similar to <a class="reference external" href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets#Selector"><span class="caps">CSS</span> selectors</a>, elements can be matched based on their context. For example, the following matches any paragraph that is a child of a list item.</p>
-<div class="highlight"><pre><span class="n">ListItem</span> <span class="o">/</span> <span class="n">Paragraph</span>
+<div class="highlight"><pre><span></span><span class="n">ListItem</span> <span class="o">/</span> <span class="n">Paragraph</span>
 </pre></div>
 <p><tt class="docutils literal">ListItem</tt> and <tt class="docutils literal">Paragraph</tt> are both RinohType classes (<tt class="docutils literal">Flowable</tt> subclasses) that make up the document tree.</p>
 <p>Similar to <span class="caps">HTML</span>/<span class="caps">CSS</span>’s ‘class’ attribute, a flowable can have a ‘style’ attribute which can be checked when constructing a selector. This selects all paragraphs of style ‘title’:</p>
-<div class="highlight"><pre><span class="n">Paragraph</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="s">'title'</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">Paragraph</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="s1">'title'</span><span class="p">)</span>
 </pre></div>
 <p>The <tt class="docutils literal">like</tt> method can also match arbitrary attributes of elements. This can be used to do more advanced things such as selecting the background objects on all odd rows of a table, limited to the cells not spanning multiple rows:</p>
-<div class="highlight"><pre><span class="n">TableCell</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="n">row_index</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">rowspan</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">TableCellBackground</span>
+<div class="highlight"><pre><span></span><span class="n">TableCell</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="n">row_index</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">rowspan</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">TableCellBackground</span>
 </pre></div>
 <p><a class="reference external" href="https://docs.python.org/3.5/library/constants.html#Ellipsis">Python’s ellipsis</a> can be used to match any number of levels in the document tree. For example, the following matches any paragraph element at any level inside a table cell.</p>
-<div class="highlight"><pre><span class="n">TableCell</span> <span class="o">/</span> <span class="o">...</span> <span class="o">/</span> <span class="n">Paragraph</span>
+<div class="highlight"><pre><span></span><span class="n">TableCell</span> <span class="o">/</span> <span class="o">...</span> <span class="o">/</span> <span class="n">Paragraph</span>
 </pre></div>
-<p>RinohType borrows <span class="caps">CSS</span>’s concept of <a class="reference external" href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets#Specificity">specificity</a> to determine the "winning" selector when multiple selectors match a given document element.</p>
+<p>RinohType borrows <span class="caps">CSS</span>’s concept of <a class="reference external" href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets#Specificity">specificity</a> to determine the “winning” selector when multiple selectors match a given document element.</p>
 </div>
 <div class="section" id="matchers-and-style-sheets">
 <h3><a class="toc-backref" href="#id6">Matchers and Style Sheets</a></h3>
 <p>In contrast to <span class="caps">CSS</span>, RinohType’s style system has an extra layer of indirection so that the user does not have to redefine the selectors in each style sheet. A <tt class="docutils literal">StyledMatcher</tt> is basically a dictionary that maps descriptions to selectors.</p>
-<div class="highlight"><pre><span class="n">matcher</span> <span class="o">=</span> <span class="n">StyledMatcher</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><span class="n">matcher</span> <span class="o">=</span> <span class="n">StyledMatcher</span><span class="p">()</span>
 <span class="o">...</span>
-<span class="n">matcher</span><span class="p">(</span><span class="s">'emphasis'</span><span class="p">,</span> <span class="n">StyledText</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="s">'emphasis'</span><span class="p">))</span>
-<span class="n">matcher</span><span class="p">(</span><span class="s">'nested line block'</span><span class="p">,</span> <span class="n">GroupedFlowables</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="s">'line block'</span><span class="p">)</span>
-                             <span class="o">/</span> <span class="n">GroupedFlowables</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="s">'line block'</span><span class="p">))</span>
+<span class="n">matcher</span><span class="p">(</span><span class="s1">'emphasis'</span><span class="p">,</span> <span class="n">StyledText</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="s1">'emphasis'</span><span class="p">))</span>
+<span class="n">matcher</span><span class="p">(</span><span class="s1">'nested line block'</span><span class="p">,</span> <span class="n">GroupedFlowables</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="s1">'line block'</span><span class="p">)</span>
+                             <span class="o">/</span> <span class="n">GroupedFlowables</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="s1">'line block'</span><span class="p">))</span>
 <span class="o">...</span>
 </pre></div>
 <p>A single <tt class="docutils literal">StyledMatcher</tt> can serve multiple <tt class="docutils literal">StyleSheet</tt>s:</p>
-<div class="highlight"><pre><span class="n">styles</span> <span class="o">=</span> <span class="n">StyleSheet</span><span class="p">(</span><span class="s">'IEEE'</span><span class="p">,</span> <span class="n">matcher</span><span class="o">=</span><span class="n">matcher</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">styles</span> <span class="o">=</span> <span class="n">StyleSheet</span><span class="p">(</span><span class="s1">'IEEE'</span><span class="p">,</span> <span class="n">matcher</span><span class="o">=</span><span class="n">matcher</span><span class="p">)</span>
 <span class="o">...</span>
-<span class="n">styles</span><span class="p">(</span><span class="s">'emphasis'</span><span class="p">,</span> <span class="n">font_slant</span><span class="o">=</span><span class="n">ITALIC</span><span class="p">)</span>
-<span class="n">styles</span><span class="p">(</span><span class="s">'nested line block'</span><span class="p">,</span> <span class="n">margin_left</span><span class="o">=</span><span class="mf">0.5</span><span class="o">*</span><span class="n">CM</span><span class="p">)</span>
+<span class="n">styles</span><span class="p">(</span><span class="s1">'emphasis'</span><span class="p">,</span> <span class="n">font_slant</span><span class="o">=</span><span class="n">ITALIC</span><span class="p">)</span>
+<span class="n">styles</span><span class="p">(</span><span class="s1">'nested line block'</span><span class="p">,</span> <span class="n">margin_left</span><span class="o">=</span><span class="mf">0.5</span><span class="o">*</span><span class="n">CM</span><span class="p">)</span>
 <span class="o">...</span>
 </pre></div>
 <p>One feature sorely missing from <span class="caps">CSS</span> is variables. Here’s an example of how variables can be specified and used in RinohType style sheets:</p>
-<div class="highlight"><pre><span class="n">styles</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s">'ieee_family'</span><span class="p">]</span> <span class="o">=</span> <span class="n">TypeFamily</span><span class="p">(</span><span class="n">serif</span><span class="o">=</span><span class="n">times</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><span class="n">styles</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">'ieee_family'</span><span class="p">]</span> <span class="o">=</span> <span class="n">TypeFamily</span><span class="p">(</span><span class="n">serif</span><span class="o">=</span><span class="n">times</span><span class="p">,</span>
                                              <span class="n">sans</span><span class="o">=</span><span class="n">helvetica</span><span class="p">,</span>
                                              <span class="n">mono</span><span class="o">=</span><span class="n">courier</span><span class="p">)</span>
 <span class="o">...</span>
-<span class="n">styles</span><span class="p">(</span><span class="s">'monospaced'</span><span class="p">,</span>
-       <span class="n">typeface</span><span class="o">=</span><span class="n">Var</span><span class="p">(</span><span class="s">'ieee_family'</span><span class="p">)</span><span class="o">.</span><span class="n">mono</span><span class="p">,</span>
+<span class="n">styles</span><span class="p">(</span><span class="s1">'monospaced'</span><span class="p">,</span>
+       <span class="n">typeface</span><span class="o">=</span><span class="n">Var</span><span class="p">(</span><span class="s1">'ieee_family'</span><span class="p">)</span><span class="o">.</span><span class="n">mono</span><span class="p">,</span>
        <span class="n">font_size</span><span class="o">=</span><span class="mi">9</span><span class="o">*</span><span class="n">PT</span><span class="p">,</span>
        <span class="n">hyphenate</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
        <span class="n">ligatures</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
@@ -174,8 +174,8 @@
 <h3><a class="toc-backref" href="#id7">Inheritance</a></h3>
 <p>Similar to <span class="caps">CSS</span>’s <a class="reference external" href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets#Inheritance">inheritance</a>, <strong>text elements</strong> inherit properties from their parent. So for the example style sheet above, text with style <tt class="docutils literal">emphasis</tt> inherits the properties (such as <tt class="docutils literal">typeface</tt>, <tt class="docutils literal">font_weight</tt> and <tt class="docutils literal">font_size</tt>) from the paragraph it is a child of, but overrides the <tt class="docutils literal">font_slant</tt> property.</p>
 <p>In addition, RinohType allows specifying a base style for each style. This avoids duplication of style information and the maintenance difficulties resulting from it.</p>
-<div class="highlight"><pre><span class="n">styles</span><span class="p">(</span><span class="s">'heading level 1'</span><span class="p">,</span>
-       <span class="n">typeface</span><span class="o">=</span><span class="n">Var</span><span class="p">(</span><span class="s">'ieee_family'</span><span class="p">)</span><span class="o">.</span><span class="n">serif</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><span class="n">styles</span><span class="p">(</span><span class="s1">'heading level 1'</span><span class="p">,</span>
+       <span class="n">typeface</span><span class="o">=</span><span class="n">Var</span><span class="p">(</span><span class="s1">'ieee_family'</span><span class="p">)</span><span class="o">.</span><span class="n">serif</span><span class="p">,</span>
        <span class="n">font_weight</span><span class="o">=</span><span class="n">REGULAR</span><span class="p">,</span>
        <span class="n">font_size</span><span class="o">=</span><span class="mi">10</span><span class="o">*</span><span class="n">PT</span><span class="p">,</span>
        <span class="n">small_caps</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
@@ -184,10 +184,10 @@
        <span class="n">space_above</span><span class="o">=</span><span class="mi">18</span><span class="o">*</span><span class="n">PT</span><span class="p">,</span>
        <span class="n">space_below</span><span class="o">=</span><span class="mi">6</span><span class="o">*</span><span class="n">PT</span><span class="p">,</span>
        <span class="n">number_format</span><span class="o">=</span><span class="n">ROMAN_UC</span><span class="p">,</span>
-       <span class="n">label_suffix</span><span class="o">=</span><span class="s">'.'</span> <span class="o">+</span> <span class="n">FixedWidthSpace</span><span class="p">())</span>
+       <span class="n">label_suffix</span><span class="o">=</span><span class="s1">'.'</span> <span class="o">+</span> <span class="n">FixedWidthSpace</span><span class="p">())</span>
 
-<span class="n">styles</span><span class="p">(</span><span class="s">'unnumbered heading level 1'</span><span class="p">,</span>
-       <span class="n">base</span><span class="o">=</span><span class="s">'heading level 1'</span><span class="p">,</span>
+<span class="n">styles</span><span class="p">(</span><span class="s1">'unnumbered heading level 1'</span><span class="p">,</span>
+       <span class="n">base</span><span class="o">=</span><span class="s1">'heading level 1'</span><span class="p">,</span>
        <span class="n">number_format</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -257,6 +257,7 @@
             <nav>
             <ul class="articles-timeline">
                 <li class="previous-article">« <a href="http://www.mos6581.org/git_subtree_alternative" title="Previous: Exploring an alternative to git-subtree">Exploring an alternative to git-subtree</a></li>
+                <li class="next-article"><a href="http://www.mos6581.org/rinohtype_0.3.0" title="Next: rinohtype 0.3.0 released">rinohtype 0.3.0 released</a> »</li>
             </ul>
             </nav>
             </aside>
@@ -264,17 +265,17 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2015-04-24T00:00:00">Apr 24, 2015</time>
+            <time pubdate="pubdate" datetime="2015-04-24T00:00:00+02:00">Apr 24, 2015</time>
             <h4>Category</h4>
-            <a class="category-link" href="http://www.mos6581.org/categories.html#rinohtype-ref">RinohType</a>
+            <a class="category-link" href="http://www.mos6581.org/categories.html#rinohtype-ref">rinohtype</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="http://www.mos6581.org/tags.html#python-ref">python
-                    <span>2</span>
+                    <span>3</span>
 </a></li>
             </ul>
 <h4>Contact</h4>
-    <a href="http://twitter.com/brechtmachiels" title="My twitter Profile" class="sidebar-social-links" target="_blank"
+    <a href="http://twitter.com/brezhtnev" title="My twitter Profile" class="sidebar-social-links" target="_blank"
     >
     <i class="fa fa-twitter sidebar-social-links"></i></a>
     <a href="http://github.com/brechtm" title="My github Profile" class="sidebar-social-links" target="_blank"
