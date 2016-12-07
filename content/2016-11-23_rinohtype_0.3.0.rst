@@ -37,6 +37,7 @@ Other highlights of the 0.3.0 release are:
 .. _recommonmark: https://github.com/rtfd/recommonmark
 .. _documentation: http://www.mos6581.org/rinohtype
 
+
 Feedback
 ========
 
@@ -47,7 +48,6 @@ For general discussions on rinohtype, you are welcome to join the `mailing list`
 .. _Gitter chat room: https://gitter.im/brechtm/rinohtype
 .. _GitHub issue tracker: https://github.com/brechtm/rinohtype/issues
 
-.. Comments on `Hacker News`_ and `Reddit`_
+Comments on `Reddit`_.
 
-.. _Hacker News: https://news.ycombinator.com/item?id=
-.. _Reddit: http://www.reddit.com/r/Python/comments/
+.. _Reddit: https://www.reddit.com/r/Python/comments/5emya3/rinohtype_030_pdf_document_renderer/
