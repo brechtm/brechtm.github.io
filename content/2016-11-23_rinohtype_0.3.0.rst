@@ -9,7 +9,11 @@ rinohtype 0.3.0 released
 
 I am pleased to announce the release of rinohtype 0.3.0. It brings many new features and bugfixes since 0.2.1. Below, you'll find an overview of the highlights of this release. For a full list of changes, see the `change log`_.
 
+You can install rinohtype `using pip`_. There's also a `stand-alone version`_ of the `command line rendering tool`_ ``rinoh`` for Windows that includes Python.
+
 .. _change log: http://www.mos6581.org/rinohtype/changelog.html#release-0-3-0-2016-11-23²
+.. _using pip: http://www.mos6581.org/rinohtype/install.html
+.. _stand-alone version: https://github.com/brechtm/rinohtype/releases/download/v0.3.0/rinoh_0.3.0.exe
 
 
 Highlights
