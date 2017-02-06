@@ -1,0 +1,29 @@
+rinohtype at FOSDEM 2017
+########################
+
+:tags: python
+:category: rinohtype
+
+.. contents::
+
+
+I was very happy to give a `talk on rinohtype`_ at `FOSDEM 2017`_ last weekend. A video recording of the 30-minute presentation is now available: MPEG4_ (155MB) or `WebM/VP8`_ (67MB). While I appear to be invisible in the video, the slides and audio are clear. The `slide deck`_ is also available for download.
+
+The talk starts with a gentle introduction to rinohtype and continues to illustrate how documents can be styled using style sheets and document templates, which provides a nice introduction to these features. For more details about them, please head over to the manual_.
+
+There was some time left for questions from the audience. Unfortunately some of the questions are inaudible, so I have paraphrased them here:
+
+1. Can rinohtype output different versions of PDF, such as PDF/A?
+2. Is there a rinohtype frontend that allows parsing and rendering (La)TeX documents? 
+3. Can you set the alignment of images in the style sheet or template?
+4. Does rinohtype handle Unicode?
+5. Does rinohtype handle custom reStructuredText directives?
+6. How difficult is it to implement another frontend, for Textile for example?
+7. Can rinohtype handle multiple input files and concatenate them in the output?
+
+.. _talk on rinohtype: https://fosdem.org/2017/schedule/event/python_rinohtype/
+.. _FOSDEM 2017: https://fosdem.org/2017/
+.. _MPEG4: http://video.fosdem.org/2017/H.1308/python_rinohtype.mp4
+.. _WebM/VP8: http://video.fosdem.org/2017/H.1308/python_rinohtype.vp8.webm
+.. _slide deck: https://fosdem.org/2017/schedule/event/python_rinohtype/attachments/slides/1561/export/events/attachments/python_rinohtype/slides/1561/rinohtype_FOSDEM2017.pdf
+.. _manual: http://www.mos6581.org/rinohtype
