@@ -5,29 +5,36 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://www.mos6581.org/</loc>
-<lastmod>2016-12-07T15:54:55-00:00</lastmod>
+<lastmod>2017-02-06T16:44:26-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.mos6581.org/archives.html</loc>
-<lastmod>2016-12-07T15:54:55-00:00</lastmod>
+<lastmod>2017-02-06T16:44:26-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.mos6581.org/tags.html</loc>
-<lastmod>2016-12-07T15:54:55-00:00</lastmod>
+<lastmod>2017-02-06T16:44:26-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://www.mos6581.org/categories.html</loc>
-<lastmod>2016-12-07T15:54:55-00:00</lastmod>
+<lastmod>2017-02-06T16:44:26-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://www.mos6581.org/fosdem2017</loc>
+<lastmod>2017-02-06T00:00:00+01:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
