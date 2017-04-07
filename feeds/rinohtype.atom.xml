@@ -1,5 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>mos6581</title><link href="http://www.mos6581.org/" rel="alternate"></link><link href="http://www.mos6581.org/feeds/rinohtype.atom.xml" rel="self"></link><id>http://www.mos6581.org/</id><updated>2017-02-06T00:00:00+01:00</updated><entry><title>rinohtype at FOSDEM 2017</title><link href="http://www.mos6581.org/fosdem2017" rel="alternate"></link><published>2017-02-06T00:00:00+01:00</published><updated>2017-02-06T00:00:00+01:00</updated><author><name>Brecht Machiels</name></author><id>tag:www.mos6581.org,2017-02-06:fosdem2017</id><summary type="html">&lt;p&gt;I was very happy to give a &lt;a class="reference external" href="https://fosdem.org/2017/schedule/event/python_rinohtype/"&gt;talk on rinohtype&lt;/a&gt; at &lt;a class="reference external" href="https://fosdem.org/2017/"&gt;&lt;span class="caps"&gt;FOSDEM&lt;/span&gt; 2017&lt;/a&gt; last weekend. A video recording of the 30-minute presentation is now available: &lt;a class="reference external" href="http://video.fosdem.org/2017/H.1308/python_rinohtype.mp4"&gt;&lt;span class="caps"&gt;MPEG4&lt;/span&gt;&lt;/a&gt; (&lt;span class="caps"&gt;155MB&lt;/span&gt;) or &lt;a class="reference external" href="http://video.fosdem.org/2017/H.1308/python_rinohtype.vp8.webm"&gt;WebM/&lt;span class="caps"&gt;VP8&lt;/span&gt;&lt;/a&gt; (&lt;span class="caps"&gt;67MB&lt;/span&gt;). While I appear to be invisible in the video, the slides and audio are clear. The &lt;a class="reference external" href="https://fosdem.org/2017/schedule/event/python_rinohtype/attachments/slides/1561/export/events/attachments/python_rinohtype/slides/1561/rinohtype_FOSDEM2017.pdf"&gt;slide deck&lt;/a&gt; is also available for&amp;nbsp;download.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>mos6581</title><link href="http://www.mos6581.org/" rel="alternate"></link><link href="http://www.mos6581.org/feeds/rinohtype.atom.xml" rel="self"></link><id>http://www.mos6581.org/</id><updated>2017-04-07T00:00:00+02:00</updated><entry><title>Python and the need for speed</title><link href="http://www.mos6581.org/python_need_for_speed" rel="alternate"></link><published>2017-04-07T00:00:00+02:00</published><updated>2017-04-07T00:00:00+02:00</updated><author><name>Brecht Machiels</name></author><id>tag:www.mos6581.org,2017-04-07:python_need_for_speed</id><summary type="html">
+&lt;p&gt;Python is doing very well in the world of programming languages. The popularity
+of Python has been growing steadily over the past decades as shown by the
+&lt;a class="reference external" href="https://www.tiobe.com/tiobe-index/"&gt;&lt;span class="caps"&gt;TIOBE&lt;/span&gt;&lt;/a&gt; and &lt;a class="reference external" href="http://pypl.github.io"&gt;&lt;span class="caps"&gt;PYPL&lt;/span&gt;&lt;/a&gt; indexes. This doesn’t have to be surprising, since
+Python has a lot going for it: it’s easy to learn, it has a beautiful syntax,
+an excellent standard library, a great package ecosystem covering many domains
+and a friendly community. However, one thing that Python is not, is fast.&lt;/p&gt;
+&lt;div class="section" id="python-is-not-fast-enough"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id1"&gt;Python is &lt;strong&gt;Not&lt;/strong&gt; Fast Enough&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;While it is true that many applications can benefit from &lt;a class="reference external" href="http://www.numpy.org"&gt;NumPy&lt;/a&gt;, &lt;a class="reference external" href="http://numba.pydata.org"&gt;Numba&lt;/a&gt; and &lt;a class="reference external" href="http://cython.org"&gt;Cython&lt;/a&gt; to speed them up massively, there is a class of
+applications that cannot take this route. One example is my own project,
+&lt;a class="reference external" href="http://www.mos6581.org/rinohtype"&gt;rinohtype.&lt;/a&gt; There is no single, obvious
+bottleneck such as a tight number-crunching loop that can be sped up using
+these tools. &lt;em&gt;But haven’t you heard about PyPy?&lt;/em&gt;, you say. I have, and alas, it
+runs rinohtype &lt;a class="reference external" href="https://bitbucket.org/pypy/pypy/issues/2365/rinohtype-much-slower-on-pypy3"&gt;slower than CPython!&lt;/a&gt;
+PyPy neither is able to speed up all classes of applications. And especially
+for batch-type applications such as rinohtype, the significant &lt;a class="reference external" href="https://lincolnloop.com/blog/speed-comparison-cpython-pypy-pyston/"&gt;&lt;span class="caps"&gt;JIT&lt;/span&gt; warmup time&lt;/a&gt; might
+even negate any speedups.&lt;/p&gt;
+&lt;p&gt;I am not alone to believe that Python’s speed is an issue. Countless efforts
+have been made at running Python applications at a faster pace: &lt;a class="reference external" href="http://pypy.org"&gt;PyPy&lt;/a&gt;, &lt;a class="reference external" href="https://github.com/dropbox/pyston"&gt;Pyston&lt;/a&gt;,
+&lt;a class="reference external" href="https://github.com/Microsoft/Pyjion"&gt;Pyjion&lt;/a&gt;, &lt;a class="reference external" href="http://nuitka.net"&gt;Nuitka&lt;/a&gt;
+, &lt;a class="reference external" href="http://pythonhosted.org/pythran/"&gt;Pythran&lt;/a&gt;, &lt;a class="reference external" href="https://github.com/haypo/fatoptimizer"&gt;&lt;span class="caps"&gt;FAT&lt;/span&gt; Python,&lt;/a&gt; &lt;a class="reference external" href="https://hg.python.org/sandbox/registervm/file/tip/REGISTERVM.txt"&gt;RegisterVM&lt;/a&gt;, &lt;a class="reference external" href="https://code.google.com/archive/p/wpython/"&gt;wpython,&lt;/a&gt; &lt;a class="reference external" href="http://code.google.com/p/hotpy/"&gt;HotPy&lt;/a&gt;, &lt;a class="reference external" href="https://code.google.com/archive/p/unladen-swallow/"&gt;unladen-swallow&lt;/a&gt;, &lt;a class="reference external" href="http://psyco.sf.net/"&gt;Psyco,&lt;/a&gt; &lt;a class="reference external" href="http://code.google.com/p/shedskin/"&gt;Shed Skin&lt;/a&gt;, and
+&lt;a class="reference external" href="https://wiki.python.org/moin/PythonImplementations"&gt;more&lt;/a&gt;. Pyston is a
+&lt;span class="caps"&gt;JIT&lt;/span&gt;-based Python implementation originally supported by DropBox. Unfortunately,
+&lt;a class="reference external" href="https://blog.pyston.org/2017/01/31/pyston-0-6-1-released-and-future-plans"&gt;DropBox have stopped sponsoring its development&lt;/a&gt;
+and has been moving its performance-critical code over to Go. Google similarly
+seems to be &lt;a class="reference external" href="https://opensource.googleblog.com/2017/01/grumpy-go-running-python.html"&gt;moving away from Python&lt;/a&gt;.
+These are clear indications that Python is losing ground to new programming
+languages that offer a similar features to Python but better performance in
+addition. There’s no more denying that Python isn’t fast enough.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="a-different-approach"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="#id2"&gt;A Different Approach&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;We should face the facts and admit we are fighting a losing battle. Yet another
+Python compiler or &lt;span class="caps"&gt;JIT&lt;/span&gt; engine will not bring the hoped-for performance boost.
+As demonstrated by the many failed attempts, speedy execution of (all) Python
+code is a near-impossible challenge. It’s time to look at more drastic, but
+technically much simpler ways to solve Python’s performance problem.&lt;/p&gt;
+&lt;p&gt;JavaScript (&lt;a class="reference external" href="https://developers.google.com/v8/"&gt;V8&lt;/a&gt;, &lt;a class="reference external" href="https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey"&gt;SpiderMonkey&lt;/a&gt;) and
+Lua (&lt;a class="reference external" href="http://luajit.org"&gt;LuaJIT&lt;/a&gt;) are often cited as examples of dynamic
+languages with very fast &lt;span class="caps"&gt;JIT&lt;/span&gt; implementations. These languages are arguably much
+simpler than Python, which undoubtedly influences the complexity and
+performance of a &lt;span class="caps"&gt;JIT&lt;/span&gt; compiler. Therefore, the reason for Python’s limited
+performance perhaps lies in the &lt;a class="reference external" href="http://faster-cpython.readthedocs.io/misc.html#why-python-is-slow"&gt;nature of the language&lt;/a&gt; itself;
+some of its features simply make it ill-suited for fast execution using a &lt;span class="caps"&gt;JIT&lt;/span&gt;.
+One example of such a feature is the fact that &lt;a class="reference external" href="http://faster-cpython.readthedocs.io/mutable.html"&gt;everything in Python is
+mutable,&lt;/a&gt; killing many
+opportunities for optimization.&lt;/p&gt;
+&lt;p&gt;It should be possible to define a subset of the Python language, uninspiredly
+dubbed “TurboPython”, that excludes those features that stand in the way of
+high-performance &lt;span class="caps"&gt;JIT&lt;/span&gt; execution (or compilation). Not using some of these
+features coincides with good design practices, so it doesn’t necessarily have
+to be all bad. While the fact that everything is mutable in Python is useful
+for mocking purposes during testing, it is generally considered extremely bad
+style to override builtin functions, constants or class methods in production
+code. Other candidates for banishment from TurboPython include &lt;tt class="docutils literal"&gt;eval&lt;/tt&gt; and
+&lt;tt class="docutils literal"&gt;exec&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;Since type annotations are now an official Python feature, I would go far as to
+say that these should be required in TurboPython code, since the presence of
+type information allows for the &lt;span class="caps"&gt;JIT&lt;/span&gt; compiler to be much simpler and more
+performant (and reduces warmup time as well). In fact, even without a &lt;span class="caps"&gt;JIT&lt;/span&gt;, a
+simple TurboPython interpreter might even be many times faster than CPython.&lt;/p&gt;
+&lt;p&gt;TurboPython should of course not replace Python as we know it. It needs to
+exist alongside Python, to be used when the extra performance is required.
+Since TurboPython is a subset of Python, it will also run on Python
+interpreters, albeit slower. Ideally, a single class, module or package used
+could be written in TurboPython and benefit from the extra speed while the rest
+of the application runs at its usual pace. &lt;a class="reference external" href="https://docs.python.org/3.6/whatsnew/3.6.html#pep-523-adding-a-frame-evaluation-api-to-cpython"&gt;Python 3.6 introduced an &lt;span class="caps"&gt;API&lt;/span&gt; that
+allows plugging a &lt;span class="caps"&gt;JIT&lt;/span&gt; into CPython,&lt;/a&gt;
+which might be used to implement something like this.&lt;/p&gt;
+&lt;p&gt;I lack the experience with interpreter/&lt;span class="caps"&gt;JIT&lt;/span&gt;/compiler design to assess whether
+the suggestions made above are in fact feasible and capable of resulting in a
+significant speed boost. I’ll leave that to others. I do however know that the
+current approaches are not cutting it and alternatives need to be explored.&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="python"></category></entry><entry><title>rinohtype at FOSDEM 2017</title><link href="http://www.mos6581.org/fosdem2017" rel="alternate"></link><published>2017-02-06T00:00:00+01:00</published><updated>2017-02-06T00:00:00+01:00</updated><author><name>Brecht Machiels</name></author><id>tag:www.mos6581.org,2017-02-06:fosdem2017</id><summary type="html">&lt;p&gt;I was very happy to give a &lt;a class="reference external" href="https://fosdem.org/2017/schedule/event/python_rinohtype/"&gt;talk on rinohtype&lt;/a&gt; at &lt;a class="reference external" href="https://fosdem.org/2017/"&gt;&lt;span class="caps"&gt;FOSDEM&lt;/span&gt; 2017&lt;/a&gt; last weekend. A video recording of the 30-minute presentation is now available: &lt;a class="reference external" href="http://video.fosdem.org/2017/H.1308/python_rinohtype.mp4"&gt;&lt;span class="caps"&gt;MPEG4&lt;/span&gt;&lt;/a&gt; (&lt;span class="caps"&gt;155MB&lt;/span&gt;) or &lt;a class="reference external" href="http://video.fosdem.org/2017/H.1308/python_rinohtype.vp8.webm"&gt;WebM/&lt;span class="caps"&gt;VP8&lt;/span&gt;&lt;/a&gt; (&lt;span class="caps"&gt;67MB&lt;/span&gt;). While I appear to be invisible in the video, the slides and audio are clear. The &lt;a class="reference external" href="https://fosdem.org/2017/schedule/event/python_rinohtype/attachments/slides/1561/export/events/attachments/python_rinohtype/slides/1561/rinohtype_FOSDEM2017.pdf"&gt;slide deck&lt;/a&gt; is also available for&amp;nbsp;download.&lt;/p&gt;
 &lt;p&gt;The talk starts with a gentle introduction to rinohtype and continues to illustrate how documents can be styled using style sheets and document templates, which provides a nice introduction to these features. For more details about them, please head over to the &lt;a class="reference external" href="http://www.mos6581.org/rinohtype"&gt;manual&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;There was some time left for questions from the audience. Unfortunately some of the questions are inaudible, so I have paraphrased them&amp;nbsp;here:&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
