@@ -106,7 +106,8 @@ the suggestions made above are in fact feasible and capable of resulting in a
 significant speed boost. I'll leave that to others. I do however know that the
 current approaches are not cutting it and alternatives need to be explored.
 
-This article was discussed on `comp.lang.python`_ and Reddit_.
+Comments on `comp.lang.python`_, `Lobste.rs`_ and Reddit_.
 
 .. _comp.lang.python: https://groups.google.com/forum/#!topic/comp.lang.python/8grCQrkSLb8
+.. _Lobste.rs: https://lobste.rs/s/gsi5xy/python_need_for_speed
 .. _Reddit: https://www.reddit.com/r/Python/comments/640imt/python_and_the_need_for_speed/
